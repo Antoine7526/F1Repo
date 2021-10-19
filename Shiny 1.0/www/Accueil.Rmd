@@ -1,0 +1,19 @@
+---
+output:
+  html_document:
+    css: style.css
+---
+
+<center>
+# Bienvenue sur notre application 
+<br> 
+  
+  
+
+<br/>
+Si vous vous posez des questions sur la Formule 1 vous êtes au bon endroit.  
+Vous trouverez ici différentes analyses graphiques (bien entendu expliquées)   
+reprennant les données depuis 1950 jusqu'à 2020.  
+
+
+
