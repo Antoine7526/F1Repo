@@ -1,6 +1,3 @@
-#Work Directory
-#setwd("~/Documents/UGA/M1/S7/Logiciels Spécialisés/R/Projet/DATA")
-
 #Libraries
 library(plotly)
 library(dplyr)
@@ -38,8 +35,5 @@ DataTeamAnalyse <- function(data){
   fig <- fig %>% layout(legend = list(title=list(text='<b> Écuries </b>')))
   fig
 }
-
-dataTest <- dataDriversParRaces1950_2020
-g = filter(dataTest, dataTest$Year == 2010)
 
 
