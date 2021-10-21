@@ -22,7 +22,7 @@ n <- 1
 annees <- 1950:2020  
 
 #Tirage au sort de n années 
-sampA <- sample(annees,n); sampA <- 2020
+sampA <- sample(annees,n); sampA 
 
 #Tirage au sort d'un Grand Prix parmi ceux présents dans l'année sampA
 gp <- c()
