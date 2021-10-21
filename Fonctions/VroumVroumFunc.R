@@ -1,7 +1,8 @@
+library(dplyr)
 library(plotly)
-library(dplyr)
+library(ggplot2)
 library(viridis)
-library(dplyr)
+
 
 #*******************************************************************************************************
 #                                             TEAM FUNCTIONS 
@@ -36,7 +37,7 @@ DataTeamAnalyse <- function(data){
   fig <- fig %>% layout(showlegend = T,
                         xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
                         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
-  fig <- fig %>% layout(legend = list(title=list(text='<b> Écuries </b>')))
+  fig <- fig %>% layout(legend = list(title=list(text='<b> Ecuries </b>')))
   fig
 }
 
@@ -76,13 +77,13 @@ PointEcurieGP <- function(data_race_driver){
                            scale_fill_viridis(option="plasma")+
                            guides(fill=guide_legend("Ecuries"))+
                            xlab("Grands Prix")+
-                           ylab("Nombre de points gagnés")+
+                           ylab("Nombre de points gagnes")+
                            theme(plot.title=element_text(hjust=0.5,size=18,face="bold"))+
                            theme(axis.title.x = element_text(hjust=0.5,size=15))+
                            theme(axis.title.y=element_text(hjust=0.5,size=15))+
                            theme(legend.title = element_text(size=10))+
                            theme(axis.text.x = element_text(face="bold", color="black", size=10, angle=30))+
-                           labs(title="Représentation de la somme des points gagnés par écurie par grand prix")
+                           labs(title="Representation de la somme des points gagnés par ecurie par grand prix")
   
   #Concersion en plotly
   ggplotly(position_ecurie_graph)
@@ -178,12 +179,12 @@ PosDepArr <- function(data_sg, data_driver_race, grand_prix){
   #Graphe des position de départ et d'arrivée 
   graphique <- ggplot(g, aes(x=position_depart, y=position_arrivee, color=pilote_depart)) + 
                geom_point() +
-               scale_x_continuous(name="Position de départ", breaks = c(1:20)) +
-               scale_y_continuous(name="Position d'arrivée",breaks = c(1:20)) +
+               scale_x_continuous(name="Position de depart", breaks = c(1:20)) +
+               scale_y_continuous(name="Position d'arrivee",breaks = c(1:20)) +
                geom_segment(aes(x = 0, y = 0, xend = 20, yend = 20),color="black") +
                labs(color = "Pilotes") +
                theme(plot.title = element_text(face = "bold",hjust = 0.5)) +
-               ggtitle("Comparaison des positions de départ et \n d'arrivée des pilotes") 
+               ggtitle("Comparaison des positions de depart et \n d'arrivee des pilotes") 
   
   #Conversion en plotly
   ggplotly(graphique)
@@ -247,10 +248,10 @@ PointDriverGP <- function(data_driver_race, data_race){
                      geom_line()+
                      theme_bw()+
                      scale_x_discrete(limits=unique(GrandPrix))+
-                     ggtitle("Représentation des points gagnés par pilote par grand prix")+
+                     ggtitle("Représentation des points gagnes par pilote par grand prix")+
                      labs(colour="Pilotes")+
                      xlab("Grands Prix")+
-                     ylab("Nombre de points gagns")+
+                     ylab("Nombre de points gagnes")+
                      theme(plot.title=element_text(hjust=0.5,size=18,face="bold"))+
                      theme(axis.title.x = element_text(hjust=0.5,size=15))+
                      theme(axis.title.y=element_text(hjust=0.5,size=15))+
@@ -295,7 +296,7 @@ DNFTeam <-  function(data){
   fig <- fig %>% layout(showlegend = T,
                         xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
                         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
-  fig <- fig %>% layout(legend = list(title=list(text='<b> Écuries </b>')))
+  fig <- fig %>% layout(legend = list(title=list(text='<b> Ecuries </b>')))
   fig
 }
 
@@ -375,6 +376,7 @@ DNF_S_freq <- function(dataDrivers){
   #On récupère les noms des personnes qui ont DNF et DNS.
   DNF <- dataDrivers$Driver[dataDrivers$Position=='DNF']
   DNS <- dataDrivers$Driver[dataDrivers$Position=='DNS']
+  
   #On crée la data frame pour le graphique
   total2 <- as.data.frame(table(c(DNF,DNS)))
   colnames(total2) <- c("modalite","frequence")
