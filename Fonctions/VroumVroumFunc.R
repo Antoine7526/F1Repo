@@ -1,7 +1,7 @@
 library(plotly)
 library(dplyr)
 library(viridis)
-library(dplyr)
+
 
 #*******************************************************************************************************
 #                                             TEAM FUNCTIONS 
@@ -51,13 +51,13 @@ PointEcurieGP <- function(data_race_driver){
   gp <- unique(data_race_driver$GrandPrix)
   
   #Initialisation des vecteurs
-  somme<-c()
-  ecurie<-c()
-  GP<-c()
+  somme <- c()
+  ecurie <- c()
+  GP <- c()
   
   #Somme des points des ecuries par Grand Prix
   for(i in gp){
-    tmp_gp <- data_race_driver[data_race_driver$GrandPrix==i,c(6,8)]
+    tmp_gp <- data_race_driver[data_race_driver$GrandPrix==i,c(7,9)]
     for(j in Ecurie){
       tmp_ecurie <- tmp_gp$Points[tmp_gp$Car==j]
       somme <- c(somme,sum(tmp_ecurie))
@@ -73,7 +73,6 @@ PointEcurieGP <- function(data_race_driver){
   position_ecurie_graph <- ggplot(data = position_ecurie,aes(x=GrandPrix,y=Points,group=Ecurie,colour=Ecurie))+
                            geom_line()+
                            theme_bw()+
-                           scale_fill_viridis(option="plasma")+
                            guides(fill=guide_legend("Ecuries"))+
                            xlab("Grands Prix")+
                            ylab("Nombre de points gagnés")+
