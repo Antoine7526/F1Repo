@@ -44,7 +44,7 @@ DataTeamAnalyse <- function(data){
 # Graphique de la somme des points par écurie par Grand Prix  #
 ###############################################################
 
-PointEucurieGP <- function(data_race_driver){
+PointEcurieGP <- function(data_race_driver){
   
   #Récupération des écuries et des grands prix
   Ecurie <- unique(data_race_driver$Car)
