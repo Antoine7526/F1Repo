@@ -234,20 +234,20 @@ Pts_moyens_Driver_GP <-function(datadrivers,dataraces){
 
 PointDriverGP <- function(data_driver_race, data_race){
   
-  #Récupération des points, des Grands Prix et des pilotes
+  #Recuperation des points, des Grands Prix et des pilotes
   Points <- as.numeric(data_driver_race$Points)
-  GrandPrix <- as.factor(unique(data_race$GrandPrix))
-  Driver <- as.factor(data_driver_race$Driver)
+  GrandPrix <- data_driver_race$GrandPrix
+  Driver <- data_driver_race$Driver
   
-  #Création de la data frame comprenant ces données
+  #Creation de la data frame comprenant ces donnees
   data <- data.frame(GrandPrix,Points,Driver)
   
   #Plot des courbes des pilotes (nombre de ppints en fonction de chaque gp)
   DriversparRaces <- ggplot(data=data,aes(x=GrandPrix,y=Points,group=Driver,colour=Driver))+
                      geom_line()+
                      theme_bw()+
-                     scale_x_discrete(limits=unique(GrandPrix))+
-                     ggtitle("Représentation des points gagnes par pilote par grand prix")+
+                     scale_x_discrete(limits=unique(str_sub(data_race$GrandPrix,3,nchar(data_race$GrandPrix)-2)))+
+                     ggtitle("Representation des points gagnes par pilote par grand prix")+
                      labs(colour="Pilotes")+
                      xlab("Grands Prix")+
                      ylab("Nombre de points gagnes")+
@@ -260,7 +260,6 @@ PointDriverGP <- function(data_driver_race, data_race){
   ggplotly(DriversparRaces)
   
 }
-
 #*******************************************************************************************************
 #                                             DNF FUNCTIONS 
 #*******************************************************************************************************
