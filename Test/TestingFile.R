@@ -12,7 +12,7 @@ dataDPR <- dataDriversParRaces1950_2020
 dataD <- dataDrivers1950_2020
 dataFL <- dataFL1950_2020
 dataR <- dataRaces1950_2020
-dataT <- dataTeams1958_2020
+dataT <- dataTeams1950_2020
 dataSG <- dataStartingGrid1950_2020
 
 #Nombre d'éléments que l'ont veut tirer au hasard
