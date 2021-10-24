@@ -1,5 +1,6 @@
 library(VroumVroum)
 library(dplyr)
+library(stringr)
 
 ################################################################################
 #                   TEST DES FONCTIONS DU PACKAGE VroumVroum                   #
@@ -8,12 +9,12 @@ library(dplyr)
 #INITIALISATION
 
 #Chargement des data frame
-dataDPR <- dataDriversParRaces1950_2020
-dataD <- dataDrivers1950_2020
-dataFL <- dataFL1950_2020
-dataR <- dataRaces1950_2020
-dataT <- dataTeams1950_2020
-dataSG <- dataStartingGrid1950_2020
+dataDPR <- read.csv('dataDriversParRaces1950_2020.csv')
+dataD <- read.csv('dataDrivers1950_2020.csv')
+dataFL <- read.csv('dataFL1950_2020.csv')
+dataR <- read.csv('dataRaces1950_2020.csv')
+dataT <- read.csv('dataTeams1950_2020.csv')
+dataSG <- read.csv('dataStartingGrid1950_2020.csv')
 
 #Nombre d'éléments que l'ont veut tirer au hasard
 n <- 1  
@@ -22,7 +23,7 @@ n <- 1
 annees <- 1950:2020  
 
 #Tirage au sort de n années 
-sampA <- sample(annees,n); sampA 
+sampA <- as.numeric(sample(annees,n)); sampA 
 
 #Tirage au sort d'un Grand Prix parmi ceux présents dans l'année sampA
 gp <- c()
@@ -49,6 +50,7 @@ dsg <- filter(dataSG, dataSG$Year == sampA)
 
 #Test DataTeamAnalyse       
 DataTeamAnalyse(dpr)
+
 
 #Test PointEcurieGP         
 PointEcurieGP(dpr)
