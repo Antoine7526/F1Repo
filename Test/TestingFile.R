@@ -48,12 +48,10 @@ dsg <- filter(dataSG, dataSG$Year == sampA)
 
 #dsg$GrandPrix<-gsub("^\\s+|\\s+$", "",dsg$GrandPrix)
 #dfl$Driver<-gsub("^\\s+|\\s+$", "",dfl$Driver)
-
 #TESTS
 
 #Test DataTeamAnalyse       
 DataTeamAnalyse(dpr)
-
 
 #Test PointEcurieGP         
 PointEcurieGP(dpr)
