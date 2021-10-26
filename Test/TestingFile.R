@@ -46,6 +46,9 @@ dfl <- filter(dataFL, dataFL$Year == sampA)
 dsg <- filter(dataSG, dataSG$Year == sampA)
 #if(sampA >= 1958){dt <- filter(dataT, dataT$Year == sampA)}
 
+#dsg$GrandPrix<-gsub("^\\s+|\\s+$", "",dsg$GrandPrix)
+#dfl$Driver<-gsub("^\\s+|\\s+$", "",dfl$Driver)
+
 #TESTS
 
 #Test DataTeamAnalyse       
@@ -74,7 +77,7 @@ DNFTeam(dpr)
 DNFDriver(dpr)
 
 #Test DNFGrandPrix
-DNFGrandPrix(dpr,dr)
+DNFGrandPrix(dpr)
 
 #Test DNF_S_freq
 DNF_S_freq(dpr)

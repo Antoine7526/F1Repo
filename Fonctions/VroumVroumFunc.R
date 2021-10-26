@@ -333,7 +333,7 @@ DNFDriver <- function(data_driver_races){
 # Graphique des DNF/S par Grand Prix #
 ######################################
 
-DNFGrandPrix <- function(data_race_driver,data_race){
+DNFGrandPrix <- function(data_race_driver){
   
   #Récupération des DNF/DNS
   DNF <- data_race_driver$GrandPrix[data_race_driver$Position=='DNF']
@@ -341,12 +341,12 @@ DNFGrandPrix <- function(data_race_driver,data_race){
   
   
   #Data frame comportant la proportion de DNF/DNS par grands prix
-  total <- data.frame(modalite=as.factor(c(DNF,DNS)))
+  total <- data.frame(modalite=table(as.factor(c(DNF,DNS))))
+  colnames(total) <- c("modalite","frequence")
   
   #Diagramme en barre des DNF/DNS par grand prix
-  DNF_S <- ggplot(data=total,aes(modalite))+
-           geom_bar(aes(fill=modalite))+
-           scale_x_discrete(limits=unique(data_race$GrandPrix))+
+  DNF_S <- ggplot(data=total,aes(x = modalite,y = frequence,fill=modalite))+
+           geom_bar(stat="identity")+
            ggtitle("Nombre de DNF et DNS de chaque grand prix")+
            labs(fill="Grands prix")+
            xlab("Grands Prix")+
