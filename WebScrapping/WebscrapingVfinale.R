@@ -10,7 +10,7 @@ library(plyr)
 trim_string <- function(string)   gsub("\\s+", " ", gsub("^\\s+|\\s+$", "", string))
 
 race<- function(gp,year){
-  #On crée une partie du lien URL pour extraire les données de chaque grand prix.
+  #On crÃ©e une partie du lien URL pour extraire les donnÃ©es de chaque grand prix.
   listRace<-c()
   for(i in 1:length(gp)){
     GP<-gp[i]
@@ -28,12 +28,12 @@ race<- function(gp,year){
 }
 
 #******************************************************************#
-#                      Récupération des courses 
+#                      RÃ©cupÃ©ration des courses 
 #******************************************************************#
 
-#Récupération des données concernant les courses à l'aide du webscraping
+#RÃ©cupÃ©ration des donnÃ©es concernant les courses Ã  l'aide du webscraping
 
-#On crée les vecteurs qui seront les colonnes de notre data frame
+#On crÃ©e les vecteurs qui seront les colonnes de notre data frame
 GrandPrix <- c()
 Date <- c()
 Year <- c()
@@ -43,11 +43,11 @@ Laps <- c()
 Time <- c()
 
 
-#On parcourt toutes les années voulues.
+#On parcourt toutes les annÃ©es voulues.
 for(i in 1950:2020){
   link <- paste0("https://www.formula1.com/en/results.html/",i,"/races.html")
   page <- read_html(link)
-  #On stocke les valeurs de l'année
+  #On stocke les valeurs de l'annÃ©e
   grandprix <- page %>% html_nodes(".table-wrap .limiter+ .bold") %>% html_text()
   date <- page %>% html_nodes(".table-wrap .dark.hide-for-mobile") %>% html_text()
   winner <- page %>% html_nodes(".table-wrap .dark+ .bold") %>% html_text()
@@ -59,10 +59,10 @@ for(i in 1950:2020){
   winner <- trim_string(winner)
   grandprix <- trim_string(grandprix)
   
-  #Les voitures sont aux indices pairs donc on enlève les indices impairs.
+  #Les voitures sont aux indices pairs donc on enlÃ¨ve les indices impairs.
   car <- car[seq(2,length(car),by=2)]
   
-  #Suppression des 4 derniers caractères ex: "HAM "
+  #Suppression des 4 derniers caractÃ¨res ex: "HAM "
   winner <- str_sub(winner,1,nchar(winner)-4)
   
   #On actualise nos vecteurs de la data frame
@@ -75,7 +75,7 @@ for(i in 1950:2020){
   Time <- c(Time,time)
 }
 
-#Création de la data frame finale   
+#CrÃ©ation de la data frame finale   
 dataRaces <- data.frame(GrandPrix,Date,Year,Winner,Car,Laps,Time, stringsAsFactors = FALSE)
 
 
@@ -84,21 +84,21 @@ write.csv(dataRaces,"dataRaces1950_2020.csv")
 
 
 #******************************************************************#
-#                     Récupération des pilotes 
+#                     RÃ©cupÃ©ration des pilotes 
 #******************************************************************#
 
-#On crée les vecteurs qui seront les colonnes de notre data frame
+#On crÃ©e les vecteurs qui seront les colonnes de notre data frame
 Year <- c()
 Position <- c()
 Driver <- c()
 Car <- c()
 Points <- c()
 
-#On parcourt toutes les années voulues.
+#On parcourt toutes les annÃ©es voulues.
 for(i in 1950:2020){
   link = paste0("https://www.racing-statistics.com/en/seasons/",i)
   page = read_html(link)
-  #On stocke les valeurs de l'année
+  #On stocke les valeurs de l'annÃ©e
   position = page %>% html_nodes(".blocks2 td:nth-child(1)") %>% html_text()
   driver = page %>% html_nodes(".blocks2 td:nth-child(3)") %>% html_text()
   car  = page %>% html_nodes(".blocks2 td:nth-child(5)") %>% html_text()
@@ -117,7 +117,7 @@ for(i in 1950:2020){
   
 }
 
-#Création de la data frame finale
+#CrÃ©ation de la data frame finale
 dataDrivers <- data.frame(Year,Position,Driver,Car,Points, stringsAsFactors = FALSE)
 
 #Ecriture de la data frame dans un fichier .csv
@@ -126,20 +126,20 @@ write.csv(dataDrivers,"dataDrivers1950_2020.csv")
 
 
 #******************************************************************#
-#                      Récupération des équipes
+#                      RÃ©cupÃ©ration des Ã©quipes
 #******************************************************************#
 
-#On crée les vecteurs qui seront les colonnes de notre data frame
+#On crÃ©e les vecteurs qui seront les colonnes de notre data frame
 Year <- c()
 Position <- c()
 Team <- c()
 Points <- c()
 
-#On parcourt les années voulues.
+#On parcourt les annÃ©es voulues.
 for(i in 1950:2020){
   link = paste0("https://www.formula1.com/en/results.html/",i,"/team.html")
   page = read_html(link)
-  #On stocke les valeurs de l'année
+  #On stocke les valeurs de l'annÃ©e
   position = page %>% html_nodes(".table-wrap .limiter+ .dark") %>% html_text()
   team = page %>% html_nodes(".table-wrap .ArchiveLink") %>% html_text()
   points = page %>% html_nodes(".table-wrap td.bold") %>% html_text()
@@ -152,7 +152,7 @@ for(i in 1950:2020){
   
 }
 
-#Création de la data frame finale
+#CrÃ©ation de la data frame finale
 dataTeams <- data.frame(Year,Position,Team,Points, stringsAsFactors = FALSE)
 
 
@@ -162,21 +162,21 @@ write.csv(dataTeams,"dataTeams1958_2020.csv")
 
 
 #******************************************************************#
-# Récupération du tour le plus rapide par Grand Prix
+# RÃ©cupÃ©ration du tour le plus rapide par Grand Prix
 #******************************************************************#
 
-#On crée les vecteurs qui seront les colonnes de notre data frame
+#On crÃ©e les vecteurs qui seront les colonnes de notre data frame
 Year <- c()
 GrandPrix <- c()
 Driver <-c()
 Car <-c()
 Time <-c()
 
-#On parcourt les années voulues.
+#On parcourt les annÃ©es voulues.
 for(i in 1950:2020){
   link = paste0("https://www.formula1.com/en/results.html/",i,"/fastest-laps.html")
   page = read_html(link)
-  #On stocke les valeurs de l'année
+  #On stocke les valeurs de l'annÃ©e
   grandprix = page %>% html_nodes(".table-wrap .width30") %>% html_text()
   driver = page %>% html_nodes(".table-wrap .width25.bold") %>% html_text()
   car = page %>% html_nodes(".table-wrap .uppercase") %>% html_text()
@@ -186,7 +186,7 @@ for(i in 1950:2020){
   driver <- trim_string(driver)
   grandprix <- trim_string(grandprix)
   
-  #Suppression des 4 derniers caractères ex: "HAM "
+  #Suppression des 4 derniers caractÃ¨res ex: "HAM "
   driver <- str_sub(driver,1,nchar(driver)-4) 
   
   #Modification de la colonne car pour qu'elle soit juste 
@@ -202,7 +202,7 @@ for(i in 1950:2020){
 }
 
 
-#Création de la data frame finale
+#CrÃ©ation de la data frame finale
 dataFL = data.frame(Year,GrandPrix,Driver,Car,Time, stringsAsFactors = FALSE)
 
 #Ecriture de la data frame dans un fichier .csv
@@ -211,33 +211,33 @@ write.csv(dataFL,"dataFL1950_2020.csv")
 
 
 #******************************************************************#
-# Récupération des données des pilotes par tour 
+# RÃ©cupÃ©ration des donnÃ©es des pilotes par tour 
 #******************************************************************#
 
 Grandprix<-c()
 year<-c()
 
-#On récupère dans un premier temps la liste de tous les grands prix de 1950 à 2020.
-#On crée un vecteur year qui contient les années associées à chaque grand prix.
+#On rÃ©cupÃ¨re dans un premier temps la liste de tous les grands prix de 1950 Ã  2020.
+#On crÃ©e un vecteur year qui contient les annÃ©es associÃ©es Ã  chaque grand prix.
 for(i in 1950:2020){
   
   link <- paste0("https://www.racing-statistics.com/en/seasons/",i)
   page <- read_html(link)
-  #On stocke les valeurs de l'année.
+  #On stocke les valeurs de l'annÃ©e.
   grandprix <- page %>% html_nodes("table:nth-child(2) tr :nth-child(3)") %>% html_text()
   
-  #Le vecteur des grands prix contient des données inutiles donc on cherche l'indice où commencent les grands prix.
+  #Le vecteur des grands prix contient des donnÃ©es inutiles donc on cherche l'indice oÃ¹ commencent les grands prix.
   indice<-match("event",grandprix)
-  #On enlève les données inutiles.
+  #On enlÃ¨ve les donnÃ©es inutiles.
   grandprix<-grandprix[-c(1:indice)]
   
   Grandprix<-c(Grandprix,grandprix)
   year<-c(year,rep(i,length(grandprix)))
 }
 
-#On crée les parties de lien pour récupérer les données de chaque grand prix.
+#On crÃ©e les parties de lien pour rÃ©cupÃ©rer les donnÃ©es de chaque grand prix.
 raceID<-race(Grandprix,year)
-#On enlève les caractères " Grand prix" pour avoir des données et un affichage graphique plus lisible.
+#On enlÃ¨ve les caractÃ¨res " Grand prix" pour avoir des donnÃ©es et un affichage graphique plus lisible.
 GP<-substr(Grandprix,1,nchar(Grandprix)-11)
 
 Driver <- c()
@@ -253,7 +253,7 @@ for(j in 1:length(GP)){
   link <- paste0("https://www.racing-statistics.com/en/events/",raceID[j])
   page <- read_html(link)
   
-  #On récupère les données voulues
+  #On rÃ©cupÃ¨re les donnÃ©es voulues
   position <- page %>% html_nodes(".block:nth-child(1) .driver_row td:nth-child(1)") %>% html_text()
   points <- page %>% html_nodes(".driver_row .nomob:nth-child(7)") %>% html_text()
   driver <- page %>% html_nodes(".block:nth-child(1) .driver_row td:nth-child(3)") %>% html_text()
@@ -261,18 +261,18 @@ for(j in 1:length(GP)){
   #driver_debut contient les pilotes qui sont dans la starting grid.
   driver_debut <- page %>% html_nodes(".block+ .block td:nth-child(3)") %>% html_text()
   
-  #Il y a que les drivers qui ont terminé la course qui ont une position pour les autres on leur donne le tag DNF.
+  #Il y a que les drivers qui ont terminÃ© la course qui ont une position pour les autres on leur donne le tag DNF.
   ff<-which(position=="")
   position[ff]<-"DNF"
   
-  #On nettoie les données de caractères génants.
+  #On nettoie les donnÃ©es de caractÃ¨res gÃ©nants.
   driver<-trim_string(driver)
   car<-trim_string(car)
   
-  #On récupère les pilotes qui étaient sur la starting grid et sur celle de fin pour ne pas avoir de données pas exploitables.
+  #On rÃ©cupÃ¨re les pilotes qui Ã©taient sur la starting grid et sur celle de fin pour ne pas avoir de donnÃ©es pas exploitables.
   list<-intersect(driver,driver_debut)
   indice<-match(list,driver)
-  #On garde que les données des pilotes qu'on a récupéré dans list.
+  #On garde que les donnÃ©es des pilotes qu'on a rÃ©cupÃ©rÃ© dans list.
   driver<-driver[indice]
   car<-car[indice]
   position<-position[indice]
@@ -288,17 +288,17 @@ for(j in 1:length(GP)){
   
 }
 
-#Création de la data frame finale
+#CrÃ©ation de la data frame finale
 dataDriversParRaces <- data.frame(Indice=c(1:length(Driver)),Driver,GrandPrix,Year,Car,Position,Points, stringsAsFactors = FALSE)
 
 #Ecriture de la data frame dans un fichier .csv
 write.csv(dataDriversParRaces,"dataDriversParRaces1950_2020.csv")
 
 #******************************************************************#
-# Récupération des positions de départ 
+# RÃ©cupÃ©ration des positions de dÃ©part 
 #******************************************************************#
 
-#On récupère les données sur le même lien que les données de dataDriversParRaces.
+#On rÃ©cupÃ¨re les donnÃ©es sur le mÃªme lien que les donnÃ©es de dataDriversParRaces.
 Grandprix<-c()
 year<-c()
 
@@ -306,7 +306,7 @@ for(i in 1950:2020){
   
   link <- paste0("https://www.racing-statistics.com/en/seasons/",i)
   page <- read_html(link)
-  #On stocke les valeurs de l'année
+  #On stocke les valeurs de l'annÃ©e
   grandprix <- page %>% html_nodes("table:nth-child(2) tr :nth-child(3)") %>% html_text()
   
   indice<-match("event",grandprix)
@@ -345,7 +345,7 @@ for(j in 1:length(GP)){
   
 }
 
-#Création de la data frame finale
+#CrÃ©ation de la data frame finale
 dataSG <- data.frame(Year,GrandPrix,Position,Driver,Car)
 
 #Ecriture de la data frame dans un fichier .csv
