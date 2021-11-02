@@ -157,6 +157,55 @@ write.csv(dataTeams,"dataTeams1958_2020.csv")
 # Récupération du tour le plus rapide par Grand Prix
 #******************************************************************#
 
+#On crée les vecteurs qui seront les colonnes de notre data frame
+Year <- c()
+GrandPrix <- c()
+Driver <-c()
+Car <-c()
+Time <-c()
+
+#On parcourt les années voulues.
+for(i in 1950:2020){
+  link = paste0("https://www.formula1.com/en/results.html/",i,"/fastest-laps.html")
+  page = read_html(link)
+  #On stocke les valeurs de l'année
+  grandprix = page %>% html_nodes(".table-wrap .width30") %>% html_text()
+  driver = page %>% html_nodes(".table-wrap .width25.bold") %>% html_text()
+  car = page %>% html_nodes(".table-wrap .uppercase") %>% html_text()
+  time = page %>% html_nodes(".table-wrap .uppercase+ .bold") %>% html_text()
+  
+  #Modification de driver pour enlever \n et les espaces 
+  driver <- str_replace_all(driver,"  ","")
+  driver <- str_replace_all(driver,"\n"," ")
+  
+  #Suppression des 4 derniers caractères ex: "HAM "
+  driver <- str_sub(driver,1,nchar(driver)-4) 
+  
+  #Modification de la colonne car pour qu'elle soit juste 
+  car<-car[seq(2,length(car),by=2)]
+  
+  #On actualise nos vecteurs du data.frame
+  Year <-c(Year,rep(i,length(grandprix)))
+  GrandPrix <-c(GrandPrix,grandprix)
+  Driver <-c(Driver,driver)
+  Car <-c(Car,car)
+  Time <-c(Time,time)
+
+}
+#Création de la data frame finale
+dataFL = data.frame(Year,GrandPrix,Driver,Car,Time, stringsAsFactors = FALSE)
+
+
+#Ecriture de la data frame dans un fichier .csv
+write.csv(dataFL,"dataFL1950_2020.csv")
+
+
+
+#******************************************************************#
+# Récupération des données des pilotes par tour 
+#******************************************************************#
+
+#récupération des pilotes
 
 list_link<-function(men){
   #La fonction crée une partie du lien pour récuperer les données sur le pilote
