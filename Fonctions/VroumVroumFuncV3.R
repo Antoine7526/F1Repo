@@ -72,17 +72,16 @@ PointEcurieGP <- function(data_race_driver){
   
   #Graphe de la sommes des points des écuries par Grand Prix
   position_ecurie_graph <- ggplot(data = position_ecurie,aes(x=GrandPrix,y=Points,group=Ecurie,colour=Ecurie))+
-    geom_line()+
-    theme_bw()+
-    guides(fill=guide_legend("Ecuries"))+
-    xlab("Grands Prix")+
-    ylab("Nombre de points gagnes")+
-    theme(plot.title=element_text(hjust=0.5,size=18,face="bold"))+
-    theme(axis.title.x = element_text(hjust=0.5,size=15))+
-    theme(axis.title.y=element_text(hjust=0.5,size=15))+
-    theme(legend.title = element_text(size=10))+
-    theme(axis.text.x = element_text(face="bold", color="black", size=10, angle=30))+
-    labs(title="Representation de la somme des points gagnés par ecurie par grand prix")
+                           geom_line()+
+                           theme_bw()+
+                           guides(fill=guide_legend("Ecuries"))+
+                           xlab("Grands Prix")+
+                           ylab("Nombre de points gagnes")+
+                           theme(plot.title=element_text(hjust=0.5,size=18,face="bold"))+
+                           theme(axis.title.x = element_text(hjust=0.5,size=15))+
+                           theme(axis.title.y=element_text(hjust=0.5,size=15))+
+                           theme(legend.title = element_text(size=10))+
+                           theme(axis.text.x = element_text(face="bold", color="black", size=10, angle=30))
   
   #Concersion en plotly
   ggplotly(position_ecurie_graph)
@@ -120,13 +119,12 @@ PosFinalePilote <- function(data_driver_race,data_fl,data_races,data_driver){
   g <- Tri(liste_position)
   position_pilote <- g$modalite
   #Diagramme en barre des fréquences
-  diagramme <- ggplot(g, aes(x=position_pilote, y=frequence,fill = position_pilote)) + 
-    geom_bar(stat = "identity",show.legend= F) +
-    scale_x_continuous(name="Position finale des pilotes", breaks = c(1:total_pilote)) +
-    scale_y_continuous(name="Fréquence") +
-    scale_fill_viridis(discrete=F,begin=0,end=1,option = "plasma") +
-    theme(plot.title = element_text(face = "bold",hjust = 0.5)) +
-    ggtitle("Position finale des pilotes ayant \n fait le tour le plus rapide") 
+  diagramme <- ggplot(g, aes(x=position_pilote, y=frequence,fill = position_pilote))+ 
+               geom_bar(stat = "identity",show.legend= F)+
+               scale_x_continuous(name="Position finale des pilotes", breaks = c(1:total_pilote))+
+               scale_y_continuous(name="Fréquence")+
+               scale_fill_viridis(discrete=F,begin=0,end=1,option = "plasma")+
+               theme(plot.title = element_text(face = "bold",hjust = 0.5))
   
   #Conversion en plotly
   ggplotly(diagramme)
@@ -159,12 +157,11 @@ PosDepArr <- function(data_sg, data_driver_race, grand_prix){
   g <- data.frame(depart[order(pilote_depart),],position_arrivee=arrivee[order(pilote_arrivee),]$position_arrivee)
   
   #Graphe des position de départ et d'arrivée 
-  graphique <- ggplot(g, aes(x=position_depart, y=position_arrivee, color=pilote_depart)) + 
-    geom_point() +
-    geom_segment(aes(x = 0, y = 0, xend = 20, yend = 20),color="black") +
-    labs(color = "Pilotes") +
-    theme(plot.title = element_text(face = "bold",hjust = 0.5)) +
-    ggtitle("Comparaison des positions de depart et \n d'arrivee des pilotes") 
+  graphique <- ggplot(g, aes(x=position_depart, y=position_arrivee, color=pilote_depart))+ 
+               geom_point() +
+               geom_segment(aes(x = 0, y = 0, xend = 20, yend = 20),color="black")+
+               labs(color = "Pilotes")+
+               theme(plot.title = element_text(face = "bold",hjust = 0.5))
   
   #Conversion en plotly
   ggplotly(graphique)
@@ -197,18 +194,17 @@ Pts_moyens_Driver_GP <-function(datadrivers,dataraces){
   data_driver_pts$Points<-data_driver_pts$Points/freq
   
   driver_pts_gp <- ggplot(data=data_driver_pts,aes(x=Driver,y=Points,fill=Driver))+
-    geom_bar(stat="identity")+
-    ggtitle("Nombre de points moyens par grand prix de chaque pilote")+
-    labs(fill="Pilotes")+
-    xlab("Pilotes")+
-    ylab("Nombre de points moyens")+
-    #On supprime l'abscisse qui contient le nom des pilotes. Ceux si sont dans la légende.
-    scale_x_discrete(labels=c(rep("",length(data_driver_pts$Driver))))+
-    theme(plot.title=element_text(hjust=0.5,size=25,face="bold"))+
-    theme(axis.title.x = element_text(hjust=0.5,size=15))+
-    theme(axis.title.y=element_text(hjust=0.5,size=15))+
-    theme_classic()+
-    theme(legend.title = element_text(size=15))
+                   geom_bar(stat="identity")+
+                   labs(fill="Pilotes")+
+                   xlab("Pilotes")+
+                   ylab("Nombre de points moyens")+
+                   #On supprime l'abscisse qui contient le nom des pilotes. Ceux si sont dans la légende.
+                   scale_x_discrete(labels=c(rep("",length(data_driver_pts$Driver))))+
+                   theme(plot.title=element_text(hjust=0.5,size=25,face="bold"))+
+                   theme(axis.title.x = element_text(hjust=0.5,size=15))+
+                   theme(axis.title.y=element_text(hjust=0.5,size=15))+
+                   theme_classic()+
+                   theme(legend.title = element_text(size=15))
   
   ggplotly(driver_pts_gp)
 }
@@ -229,18 +225,18 @@ PointDriverGP <- function(data_driver_race, data_race){
   
   #Plot des courbes des pilotes (nombre de ppints en fonction de chaque gp)
   DriversparRaces <- ggplot(data=data,aes(x=GrandPrix,y=Points,group=Driver,colour=Driver))+
-    geom_line()+
-    theme_bw()+
-    scale_x_discrete(limits=unique(data_race$GrandPrix))+
-    ggtitle("Représentation des points gagnes par pilote par grand prix")+
-    labs(colour="Pilotes")+
-    xlab("Grands Prix")+
-    ylab("Nombre de points gagnes")+
-    theme(plot.title=element_text(hjust=0.5,size=18,face="bold"))+
-    theme(axis.title.x = element_text(hjust=0.5,size=15))+
-    theme(axis.title.y=element_text(hjust=0.5,size=15))+
-    theme(legend.title = element_text(size=10))+
-    theme(axis.text.x = element_text(face="bold", color="black", size=10, angle=30))
+                     geom_line()+
+                     theme_bw()+
+                     scale_x_discrete(limits=unique(data_race$GrandPrix))+
+                     labs(colour="Pilotes")+
+                     xlab("Grands Prix")+
+                     ylab("Nombre de points gagnes")+
+                     theme(plot.title=element_text(hjust=0.5,size=18,face="bold"))+
+                     theme(axis.title.x = element_text(hjust=0.5,size=15))+
+                     theme(axis.title.y=element_text(hjust=0.5,size=15))+
+                     theme(legend.title = element_text(size=10))+
+                     theme(axis.text.x = element_text(face="bold", color="black", size=10, angle=30))
+  
   #Conversion en plotly
   ggplotly(DriversparRaces)
   
@@ -300,16 +296,15 @@ DNFDriver <- function(data_driver_races){
   
   #Diagramme en barre des proportions de DNF/DNS par pilote
   DNF_S_pilote <- ggplot(data=total,aes(modalite))+
-    geom_bar(aes(fill=modalite))+
-    ggtitle("Nombre de DNF et DNS de chaque pilote")+
-    labs(fill="Pilotes")+
-    xlab("Pilotes")+
-    ylab("Nombre de DNF et DNS")+
-    theme(plot.title=element_text(hjust=0.5,size=25,face="bold"))+
-    theme(axis.title.x = element_text(hjust=0.5,size=15))+
-    theme(axis.text.x = element_text(face="bold", color="black", size=10, angle=30))+
-    theme(axis.title.y=element_text(hjust=0.5,size=15))+
-    theme(legend.title = element_text(size=15))
+                  geom_bar(aes(fill=modalite))+
+                  labs(fill="Pilotes")+
+                  xlab("Pilotes")+
+                  ylab("Nombre de DNF et DNS")+
+                  theme(plot.title=element_text(hjust=0.5,size=25,face="bold"))+
+                  theme(axis.title.x = element_text(hjust=0.5,size=15))+
+                  theme(axis.text.x = element_text(face="bold", color="black", size=10, angle=30))+
+                  theme(axis.title.y=element_text(hjust=0.5,size=15))+
+                  theme(legend.title = element_text(size=15))
   
   #Conversion en plotly
   ggplotly(DNF_S_pilote)
@@ -331,17 +326,15 @@ DNFGrandPrix <- function(data_race_driver,data_race){
   
   #Diagramme en barre des DNF/DNS par grand prix
   DNF_S <- ggplot(data=total,aes(modalite))+
-    geom_bar(aes(fill=modalite))+
-    #scale_x_discrete(limits=unique(str_sub(data_race$GrandPrix,3,nchar(data_race$GrandPrix)-2)))+
-    ggtitle("Nombre de DNF et DNS de chaque grand prix")+
-    labs(fill="Grands prix")+
-    xlab("Grands Prix")+
-    ylab("Nombre de DNF et DNS")+
-    theme(plot.title=element_text(hjust=0.5,size=25,face="bold"))+
-    theme(axis.title.x = element_text(hjust=0.5,size=15))+
-    theme(axis.title.y=element_text(hjust=0.5,size=15))+
-    theme(legend.title = element_text(size=15))+
-    theme(axis.text.x = element_text(face="bold", color="black", size=10, angle=30))
+           geom_bar(aes(fill=modalite))+
+           labs(fill="Grands prix")+
+           xlab("Grands Prix")+
+           ylab("Nombre de DNF et DNS")+
+           theme(plot.title=element_text(hjust=0.5,size=25,face="bold"))+
+           theme(axis.title.x = element_text(hjust=0.5,size=15))+
+           theme(axis.title.y=element_text(hjust=0.5,size=15))+
+           theme(legend.title = element_text(size=15))+
+           theme(axis.text.x = element_text(face="bold", color="black", size=10, angle=30))
   
   #Conversion en plotly
   ggplotly(DNF_S)
@@ -378,18 +371,17 @@ DNF_S_freq <- function(dataDrivers,annee_inf,annee_sup){
   
   #On crée un diagramme en barres des fréquences de DNF/DNS de chaque pilote.
   DNF_S_pilote <- ggplot(data=total2,aes(x=modalite,y=frequence,fill=modalite))+
-    geom_bar(stat="identity")+
-    ggtitle("Nombre de DNF et DNS de chaque pilote")+
-    labs(fill="Pilotes")+
-    xlab("Pilotes")+
-    ylab("Nombre de DNF et DNS")+
-    #On supprime l'abscisse qui contient le nom des pilotes. Ceux si sont dans la légende.
-    scale_x_discrete(labels=c(rep("",length(total2$modalite))))+
-    theme(plot.title=element_text(hjust=0.5,size=25,face="bold"))+
-    theme(axis.title.x = element_text(hjust=0.5,size=15))+
-    theme(axis.title.y=element_text(hjust=0.5,size=15))+
-    theme_classic()+
-    theme(legend.title = element_text(size=15))
+                  geom_bar(stat="identity")+
+                  labs(fill="Pilotes")+
+                  xlab("Pilotes")+
+                  ylab("Nombre de DNF et DNS")+
+                  #On supprime l'abscisse qui contient le nom des pilotes. Ceux si sont dans la légende.
+                  scale_x_discrete(labels=c(rep("",length(total2$modalite))))+
+                  theme(plot.title=element_text(hjust=0.5,size=25,face="bold"))+
+                  theme(axis.title.x = element_text(hjust=0.5,size=15))+
+                  theme(axis.title.y=element_text(hjust=0.5,size=15))+
+                  theme_classic()+
+                  theme(legend.title = element_text(size=15))
   
   #Affichage du ggplot avec ggplotly pour une interactivité avec le diagramme.
   ggplotly(DNF_S_pilote)
