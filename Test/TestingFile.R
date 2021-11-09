@@ -13,7 +13,7 @@ dataDPR <- read.csv('dataDriversParRaces1950_2020.csv')
 dataD <- read.csv('dataDrivers1950_2020.csv')
 dataFL <- read.csv('dataFL1950_2020.csv')
 dataR <- read.csv('dataRaces1950_2020.csv')
-dataT <- read.csv('dataTeams1950_2020.csv')
+dataT <- read.csv('dataTeams1958_2020.csv')
 dataSG <- read.csv('dataStartingGrid1950_2020.csv')
 
 #Nombre d'éléments que l'ont veut tirer au hasard

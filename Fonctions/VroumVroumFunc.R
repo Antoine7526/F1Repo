@@ -58,7 +58,7 @@ PointEcurieGP <- function(data_race_driver){
   
   #Somme des points des ecuries par Grand Prix
   for(i in gp){
-    tmp_gp <- data_race_driver[data_race_driver$GrandPrix==i,c(7,9)]
+    tmp_gp <- data_race_driver[data_race_driver$GrandPrix==i,c(6,8)]
     for(j in Ecurie){
       tmp_ecurie <- tmp_gp$Points[tmp_gp$Car==j]
       somme <- c(somme,sum(tmp_ecurie))
