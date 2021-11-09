@@ -367,11 +367,13 @@ DNFGrandPrix <- function(data_race_driver){
 # Un pilote apparait seulement s'il a au moins une fois DNF/DNS.               #
 ################################################################################
 
-DNF_S_freq <- function(dataDrivers){
+DNF_S_freq <- function(dataDrivers,annee_inf,annee_sup){
   #Fréquence de DNF/DNS de chaque pilote entre 2 années sélectionnées en amont.
   #Un pilote apparer seulement s'il a au moins une fois DNF/DNS.
   
   #On récupère les noms des personnes qui ont DNF et DNS.
+  dataDrivers<- filter(dataDrivers, dataDrivers$Year >= annee_inf)
+  dataDrivers<- filter(dataDrivers, dataDrivers$Year <= annee_sup)
   DNF <- dataDrivers$Driver[dataDrivers$Position=='DNF']
   DNS <- dataDrivers$Driver[dataDrivers$Position=='DNS']
   
