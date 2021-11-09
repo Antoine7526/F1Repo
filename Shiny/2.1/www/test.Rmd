@@ -1,0 +1,5 @@
+<footer>
+<p class="pull-right"><a href="#">Back to top</a></p>
+<p>Intelligentsia&mdash;New York University, MSBA Capstone Project&mdash;Class of 2017</p>
+Disclaimer</a></p>
+</footer>

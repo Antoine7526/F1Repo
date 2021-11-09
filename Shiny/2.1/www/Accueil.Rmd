@@ -1,0 +1,26 @@
+<br>
+
+<br/>
+<center>
+<img src="voiturebis.png" height = '374' width ='666'/>
+<br>
+
+<br/>
+## Bienvenue sur notre application 
+<br>
+<br/>
+Si vous vous posez des questions sur la Formule 1 vous êtes au bon endroit.  
+Vous trouverez ici différentes analyses graphiques (bien entendu expliquées)   
+reprennant les données depuis 1950 jusqu'à 2020. 
+<br>
+
+
+<br/>
+<div class="pull-left"> 
+<img src='logoblanc.png' height = '125' width ='203'/>
+</div>
+Cette application a été réalisée dans  
+le cadre d'un projet demandé au sein  
+du M1 Statistiques et Sciences des  
+Données de l'Université Grenoble Alpes  
+<center/>
