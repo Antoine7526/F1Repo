@@ -115,6 +115,9 @@ PosFinalePilote <- function(data_driver_race,data_fl,data_races,data_driver){
     liste_position <- c(liste_position,position_driver)
   }
   
+  #On convertit les NA en 0
+  liste_position[is.na(liste_position)] <- 0
+  
   #data frame comprenant les fréquences des positions d'arrivées
   g <- Tri(liste_position)
   position_pilote <- g$modalite
