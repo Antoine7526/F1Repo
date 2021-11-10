@@ -1,0 +1,21 @@
+---
+output:
+  html_document:
+    css: style.css
+---
+<br>
+
+
+<br/>
+Cette application a été réalisée dans  
+le cadre d'un projet demandé au sein  
+du M1 Statistiques et Sciences des  
+Données de l'Université Grenoble Alpes  
+par:  
+
+<b>
+Charline Champ  
+Batiste Amistadi   
+Antoine Grancher
+<b/>
+<center/>
