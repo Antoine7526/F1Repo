@@ -75,7 +75,7 @@ DNFDriver(dpr)
 DNFGrandPrix(dpr)
 
 #Test DNF_S_freq
-DNF_S_freq(dpr)
+DNF_S_freq(dataDPR,1950,2020)
 
 
 
