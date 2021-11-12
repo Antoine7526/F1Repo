@@ -1,0 +1,25 @@
+---
+title: "Traitement des Données"
+output: html_document
+---
+
+Après avoir recueilli les donné par web scraping, nous nous sommes tout de suite mis à réfléchir sur l’implémentation de fonctions permettant d’avoir une visualisation des données. Nous avons utilisé différents formats afin de donner une certaine diversité sur les graphiques. Nous avons utilisé :  
+  
+-	 Des diagrammes circulaires (en Donut) pour représenter des fréquences (dans notre cas pour le pourcentage de victoire des écuries sur une saison ou encore le pourcentage d’abandon des écuries sur une saison).  
+  
+-	Des diagrammes en barre pour représenter des fréquences ou des quantités (moyenne des points d’un pilote sur une saison, fréquence des positions finales des pilotes ayant fait le tour le plus rapide, nombre d’abandons par pilote, nombre d’abandon par grand prix)  
+  
+-	Des courbes, permettant la visualisation de l’évolution des points d’un pilote ou d’une écurie sur une saison.  
+  
+-	Un nuage de points, permettant d’obtenir une comparaison entre la position départ et la position d’arrivée.  
+  
+Toutes les fonctions permettent la visualisation sur une année et tous les grands prix. Seule la fonction permettant la comparaison entre la position de départ et la position d’arrivée fonctionne sur un seul grand prix. Nous avons décidé de ne pas prendre en compte la saison 2021 car elle est toujours en cours. Nos visualisations se concentrent donc de 1950 à 2020.  
+  
+Toutes ces fonctions sont présentes dans le fichier [*VroumVroumFunc*](https://github.com/Antoine7526/F1Repo/tree/main/Fonctions)  et ont été réalisées sous *plotly* afin d’avoir des graphiques dynamiques. Il existe plusieurs versions de ce fichier. En effet, nous avons dû adapter nos fonctions en fonction des données recueillies.  
+  
+Afin de tester ces fonctions, nous avons créé un fichier [*TestingFile*](https://github.com/Antoine7526/F1Repo/tree/main/Test). Ce dernier nous permet dans un premier temps de tiré au hasard une année entre 1950 et 2020, et un grand prix associé à l’année tirée. Cela nous permet de tester nos fonctions sur différentes années et différents grands prix.  
+  
+Une fois nos fonctions nous paraissant opérationnelles, nous avons travaillé à l’élaboration d’un package nommé [*VroumVroum*](https://github.com/CharlineChamp/VroumVroum). Ce dernier nous permet de charger directement les fonctions, ce qui est très utile. Par la suite, après avoir obtenue nos data frames finals, nous avons décidé de les ajouter directement aux package. Cela a permis d’optimiser le temps de chargement de notre application *shiny* (cf. Partie 3).  
+  
+Pour continuer, nous avons également réalisé des fonctions en [*Rcpp*](https://github.com/Antoine7526/F1Repo/tree/main/Rcpp) (en mode *inLine*, en mode classique avec un fichier source *.cpp*). En mode *inLine*, nous avons implémenter une fonction    « *add* » permettant l’addition entre trois éléments, et une « *nb_elt* » donnant le nombre d’élément d’un vecteur de caractères. Dans le fichier *.cpp* nous avons fait deux fonctions calculant des moyennes, « *meanC* » et « *moyenne* », l’un calculant la moyenne sur un vecteur de *numeric*, l’autre calculant la moyenne sur un tableau de *int* de taille *n*. Pour donner suite à cela nous avons voulons créer un package [*VroumVroumCpp*](https://github.com/Antoine7526/VroumVroumCpp). Nous nous sommes heurté à des difficultés qui nous prenaient pas mal de temps. Or, les fonctions implémentées en *Rcpp* n'étaient pas utiles à notre projet, car nous ne les utilisions pas. Nous avons donc décidé de mettre cette partie de côté afin d’avancer sur le projet et d’y revenir plus tard si le temps nous le permettrait.  
+  
