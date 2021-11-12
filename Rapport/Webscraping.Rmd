@@ -7,19 +7,21 @@ output: html_document
 
 
 <br/>
-Le web scraping consiste à récolter des données sur des sites web. Pour ce projet sur la formule 1, on a décidé de créer 6 bases de données pour produire des graphiques. On a dans un premier temps récupérer l'année 2020 (cf WebscrapingV3.R) sur le site officiel de la [formule 1](https://www.formula1.com/en/results.html) puis on a développé notre code pour chaque base de données de 1950 à 2020 sauf pour les équipes où les classements ont commencé qu'en 1958 (cf WebscrapingV4.R). On a rencontré plusieurs problèmes quand on a récupéré les données notamment car le site avait une version portable ce qui a entrainé un nettoyage des données de caractères inutiles.
+Le web scraping consiste à récolter des données sur des sites web. Pour ce projet sur la formule 1, on a décidé de créer 6 bases de données pour produire des graphiques. On a dans un premier temps récupérer l'année [2020](https://github.com/Antoine7526/F1Repo/blob/main/WebScraping/WebscrapingV3.R) sur le site officiel de la [formule 1](https://www.formula1.com/en/results.html) puis on a développé notre code pour chaque base de données de [1950 à 2020](https://github.com/Antoine7526/F1Repo/blob/main/WebScraping/WebscrapingV4.R) sauf pour les équipes où les classements ont commencé qu'en 1958. On a rencontré plusieurs problèmes quand on a récupéré les données notamment car le site avait une version portable ce qui a entrainé un nettoyage des données de caractères inutiles.
 <br>
 
 
 
 <br/>
-Avec dataDriversParRaces on a eu un plus gros problème pour la création des adresses url des pilotes. Une partie de l'url est créée à partir du nom du pilote, seulement certains noms étaient particuliers, ils étaient composés ou avaient un "de" ou un prénom ou nom de moins de 3 lettres. On a donc du faire une réécriture manuelle de cette partie du l'url pour ces pilotes (cf WebscrapingV4.R lignes 260 à 406).
+Avec dataDriversParRaces on a eu un plus gros problème pour la création des adresses url des pilotes. Une partie de l'url est créée à partir du nom du pilote, seulement certains noms étaient particuliers, ils étaient composés ou avaient un "de" ou un prénom ou nom de moins de 3 lettres. On a donc du faire une réécriture manuelle de cette partie du l'url pour ces [pilotes](https://github.com/Antoine7526/F1Repo/blob/main/WebScraping/WebscrapingV4.R) (lignes 260 à 406).
 <br>
 
 
 
 <br/>
-Pour dataStartingGrid on a rencontré un autre problème du web scraping. L'url utilisée est de ce type : <span style="color:blue">htt</span><span style="color:blue">ps://www.formula1.com/en/results.html/</span> année <span style="color:blue">/races/</span> numéro unique associé à un grand prix <span style="color:blue">/</span> nom du grand prix <span style="color:blue">/starting-grid.html</span>. Le problème vient que le numéro unique attribué à chaque grand prix n'a pas d'ordre logique (cf WebscrapingV4.R ligne 494).
+Pour dataStartingGrid on a rencontré un autre problème du web scraping. L'url utilisée est de ce type :
+\
+<span style="color:red">htt</span><span style="color:red">ps://www.formula1.com/en/results.html/</span> année <span style="color:red">/races/</span> numéro unique associé à un grand prix <span style="color:red">/</span> nom du grand prix <span style="color:red">/starting-grid.html</span>. Le problème vient que le numéro unique attribué à chaque grand prix n'a pas [d'ordre logique](https://github.com/Antoine7526/F1Repo/blob/main/WebScraping/WebscrapingV4.R) (ligne 494).
 <br>
 
 
@@ -31,4 +33,4 @@ Pour certains graphiques on utilise les données de ces 2 bases de données, on 
 
 
 <br/>
-On a utilisé le site [racing-statistics](https://www.racing-statistics.com/en/seasons) où on a eu aussi des problèmes entre les pilotes de départ et d'arrivée. On a donc sélectionné pour les données d'arrivée que celles des pilotes qui sont partis pour avoir les données qu'on voulait. Les pilotes qui étaient à l'arrivée et pas au départ étaient en général des pilotes qui n'avaient pas pris les départs mais qui étaient dans la grille d'arrivée une erreur du site surement. On obtient donc le fichier WebscrapingVfinale.R qui crée sans erreur et comme on veut les 6 bases de données.
+On a utilisé le site [racing-statistics](https://www.racing-statistics.com/en/seasons) où on a eu aussi des problèmes entre les pilotes de départ et d'arrivée. On a donc sélectionné pour les données d'arrivée que celles des pilotes qui sont partis pour avoir les données qu'on voulait. Les pilotes qui étaient à l'arrivée et pas au départ étaient en général des pilotes qui n'avaient pas pris les départs mais qui étaient dans la grille d'arrivée une erreur du site surement. On obtient donc le fichier [WebscrapingVfinale.R](https://github.com/Antoine7526/F1Repo/blob/main/WebScraping/WebscrapingVfinale.R) qui crée sans erreur et comme on veut les 6 bases de données.
