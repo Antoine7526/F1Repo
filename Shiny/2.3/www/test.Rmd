@@ -1,0 +1,26 @@
+---
+title: "Test"
+author: "Charline Champ"
+date: "11/12/2021"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 3
+    number_sections: true
+    theme: united
+---
+
+# Introduction 
+
+# Gestion du projet
+
+## Cachier des charges
+
+## Répartition des tâches
+
+# Réalisation 
+
+## Récupération des données
+
+## Traitement des données 
