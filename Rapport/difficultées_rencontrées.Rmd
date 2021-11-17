@@ -1,0 +1,9 @@
+---
+title: "Difficultées rencontrées"
+output: html_document
+---
+
+Comme il a été dit ci dessus, le web scraping et le Rcpp nous ont posé des problèmes. La création d'un package est le principal problème pour le Rcpp.
+
+Durant la moitié du projet, on a eu des problèmes d'accents et caractères spéciaux quand on s'échangeait les données et fichiers R. On s'est rendu compte que le problème venait du type d'encodage des fichiers de chacun et du système d'exploitation.
+

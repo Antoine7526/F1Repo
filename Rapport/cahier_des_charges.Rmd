@@ -1,0 +1,23 @@
+---
+title: "Cahier des charges"
+output: html_document
+---
+<br>
+
+
+<br/>
+
+|  |   |
+|-----------------|-----------------------|
+|  Contexte, définition du problème, motivations     |  Ce projet est né dans le cadre d'un projet à réaliser en R suite aux cours de Rémy Drouillet. On était curieux de voir des informations graphiques sur la formule 1 sur plusieurs années. |
+| Objectifs    |  -Réaliser plusieurs bases de données sur la formule 1 à partir de 2 sites web. |
+|   | -Traitement et analyse des données. |
+|   | -Réalisation d'une interface graphique pour afficher les résultats.  |
+|   | -Création d'un package contenant les fonctions des graphiques et les données. |
+|   | -Création d'un package rccp.  |
+|   Périmètre    | Libre.  |
+| Description fonctionelle | En premier lieu le fichier WebScrapingVfinale.R doit être lancé pour récupérer les données, on obtient 6 bases de données de type .csv. En deuxième lieu le fichier shinyapp.R doit être lancé pour avoir accés à l’interface et aux graphiques. L’utilisateur pourra choisir l’année qu’il souhaite entre 1950 et 2020 et de 1958 à 2020 pour les équipes.   |
+| Délai |  	3 mois (du 16/09 au 05/12). |
+| Livrable |  -Code source réalisant la récupération des données, le traitement des données et l’interface shiny. |
+|   | -Une interface Web affichant les graphiques. |
+|   |   -Un rapport. |
