@@ -4,7 +4,7 @@ Ce projet a visé à créer une application shiny permettant la visualisation de
 
 ## Informations Générales 
 
-Le dossier le plus important sur ce Git, est le [```Shiny```](https://github.com/Antoine7526/F1Repo/tree/main/Shiny). En effet, ce dernier fait référence à tous les autres : [```DATA```](https://github.com/Antoine7526/F1Repo/tree/main/DATA), [```Fonctions```](https://github.com/Antoine7526/F1Repo/tree/main/Fonctions),
+Le dossier le plus important sur ce Git, est [```Shiny```](https://github.com/Antoine7526/F1Repo/tree/main/Shiny). En effet, ce dernier fait référence à tous les autres : [```DATA```](https://github.com/Antoine7526/F1Repo/tree/main/DATA), [```Fonctions```](https://github.com/Antoine7526/F1Repo/tree/main/Fonctions),
 [```Test```](https://github.com/Antoine7526/F1Repo/tree/main/Test), et [```Rapport```](https://github.com/Antoine7526/F1Repo/tree/main/Rapport). Chaque dossier comporte plusieurs versions. Nous utilisons à chaque fois la plus récente. Les autres versions sont disponibles car elles permettent la compréhension et la visualisation de l'évolution de notre travail.
 
 
