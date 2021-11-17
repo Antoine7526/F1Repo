@@ -1,0 +1,17 @@
+---
+title: "Conclusion"
+output: html_document
+---
+
+On a préféré faire des conclusions personnelles qu'une conclusion générale.
+
+Antoine :
+
+
+
+Batiste :
+
+Ce projet m'a beaucoup plu, tant le sujet que le résultat final obtenu. J'ai pu approfondir mes compétences de ggplot2 mais aussi pu découvrir la création de package de R et manipuler de nouvelles librairies notamment rvest pour le web scraping et l'utilisation de Git. Je trouve que travailler sous forme de projet avec une grande autonomie est bien plus formateur et plus épanouissant que si on avait eu des cours standards.
+
+Charline :
+
