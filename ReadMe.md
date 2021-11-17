@@ -16,7 +16,7 @@ Plusieurs packages ont été utilisés pour mener a bien ce projet. Nous recenso
 Et d'autres pour la visualisation et manipulation de données : 
 ```plotly```,```dplyr```, et ```VroumVroum```.
 
-Vérifiez bien que vous les ayez tous pour pouvoir lancer le fichier [```shinyapp.R```](https://github.com/Antoine7526/F1Repo/blob/main/Shiny/2.3/shinyapp.R).
+Vérifiez bien que vous les ayez tous pour pouvoir lancer le fichier [```shinyapp.R```](https://github.com/Antoine7526/F1Repo/blob/main/Shiny/2.4/shinyapp.R).
 
 Le package ```VroumVroum``` contient toutes les données recueillies ainsi que toutes les fonctions développées sur ce dépôt. Pour plus d'informations sur ce dernier, il est disponible [ici](https://github.com/CharlineChamp/VroumVroum). Pour profiter plainement de notre application shiny, il est nécessaire de l'installer.
 Pour ce faire, vous pouvez procèder comme suit: 
