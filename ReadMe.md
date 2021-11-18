@@ -5,7 +5,7 @@ Ce projet a visé à créer une application shiny permettant la visualisation de
 ## Informations Générales 
 
 Le dossier le plus important sur ce Git, est le dossier [```Shiny```](https://github.com/Antoine7526/F1Repo/tree/main/Shiny). En effet, ce dernier fait référence à tous les autres : [```DATA```](https://github.com/Antoine7526/F1Repo/tree/main/DATA), [```Fonctions```](https://github.com/Antoine7526/F1Repo/tree/main/Fonctions),
-[```Test```](https://github.com/Antoine7526/F1Repo/tree/main/Test), et [```Rapport```](https://github.com/Antoine7526/F1Repo/tree/main/Rapport). Chaque dossier comporte plusieurs versions. Nous utilisons à chaque fois la plus récente. Les autres versions sont disponibles car elles permettent la compréhension et la visualisation de l'évolution de notre travail.
+[```Test```](https://github.com/Antoine7526/F1Repo/tree/main/Test), [```Map```](https://github.com/Antoine7526/F1Repo/tree/main/Map), et [```Rapport```](https://github.com/Antoine7526/F1Repo/tree/main/Rapport). Chaque dossier comporte plusieurs versions. Nous utilisons à chaque fois la plus récente. Les autres versions sont disponibles car elles permettent la compréhension et la visualisation de l'évolution de notre travail.
 
 
 ## Packages
@@ -14,7 +14,7 @@ Plusieurs packages ont été utilisés pour mener a bien ce projet. Nous recenso
 ```shiny```,```shinythemes```,```shinydashboard```,```dashboardthemes```,```shinydashboardPlus```.
 
 Et d'autres pour la visualisation et manipulation de données : 
-```plotly```,```dplyr```, et ```VroumVroum```.
+```plotly```,```dplyr```,```leaflet```, et ```VroumVroum```.
 
 Vérifiez bien que vous les ayez tous pour pouvoir lancer le fichier [```shinyapp.R```](https://github.com/Antoine7526/F1Repo/blob/main/Shiny/3.1/shinyapp.R).
 
