@@ -63,7 +63,8 @@ Lat <- as.numeric(Lat)
 Lng <- as.numeric(Lng)
 
 #Création de la data frame finale
-dataCoord <- data.frame(Year=year,Circuit=Circuit,Lat,Lng)
+dataCoord <- data.frame(Year=Year,Circuit=Circuit,Lat,Lng)
 
 #Ecriture de la data frame dans un fichier .csv
 write.csv(dataCoord,"dataCoord1950_2020.csv")
+
