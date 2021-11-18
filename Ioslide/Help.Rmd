@@ -1,0 +1,35 @@
+---
+title: "Help"
+output:
+  ioslides_presentation:
+          css: foo.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Besoin d'aide ?
+
+Voici un petit diaporama permettant de vous donner de l'aide sur la navigation de notre site.
+
+
+
+## Page d'accueil
+
+<img src="Accueil.png" height = '500' width ='777'/>
+ <a href="javascript:slidedeck.prevSlide()">
+      <img class="animated-navl" border="0" src="arrow.png" /></a>
+
+## Slide with R Output
+
+```{r cars, echo = TRUE}
+summary(cars)
+```
+
+## Slide with Plot
+
+```{r pressure}
+plot(pressure)
+```
+
