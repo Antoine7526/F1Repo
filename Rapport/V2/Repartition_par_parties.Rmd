@@ -3,14 +3,13 @@ title: "Répartition par parties"
 output: html_document
 ---
 
-Pour la répartition des parties du projet, on a fixé au début les buts à atteindre et au fur et à mesure de l'avancée du projet on a trouvé d'autres objectifs optionnels à réaliser qui dépendaient de la contrainte du temps qui seront exposés dans la sous partie Pistes d'améliorations. On a préféré faire des "réunions" à chaque fin de session de travail pour se fixer les tâches à faire à la session suivante. On n'a pas réalisé directement un diagramme de Gantt au début du projet étant donné que l'on avait pas assez d'heures de travail en cours pour notre projet et qu'on ne pouvait pas prévoir toutes les sessions et volume horaire de travail en début de projet. La répartition globale des parties par ordre chronologique du début de celles ci est la suivante :
+Pour la répartition des tâches lors de ce projet, nous avons fixé dés le début les objectifs à atteindre et au fur et à mesure de notre avancée  nous avons ajouté d'autres défis optionnels à réaliser qui dépendaient de la contrainte du temps. Nous avons fait le choix de réaliser des "réunions" à chaque fin de session de travail pour se fixer les tâches à faire à la session suivante. Nous n'avons pas réalisé directement un diagramme de Gantt car étant donné le flou présent sur ce que nous voulions mettre en avant dans ce projet ou encore même notre volume horaire disponible il nous été compliqué de le réaliser en amont. Voici donc notre répartition globale des tâches par ordre chronologique :
 
-- Antoine, Batiste, Charline : début du [web scraping](https://github.com/Antoine7526/F1Repo/blob/main/WebScraping/WebscrapingV3.R).
-- Antoine, Batiste, Charline : création des graphiques avec ggplot et plotly.
-- Batiste : Création des [bases de données](https://github.com/Antoine7526/F1Repo/tree/main/DATA) avec le web scraping.
-- Antoine, Batiste : création des [fonctions des graphiques](https://github.com/Antoine7526/F1Repo/tree/main/Fonctions).
-- Antoine : implémentation de code [Rcpp](https://github.com/Antoine7526/F1Repo/tree/main/Rcpp).
-- Antoine, Charline : création du [package VroumVroum](https://github.com/CharlineChamp/VroumVroum).
-- Charline : développement de l'[interface Shiny](https://github.com/Antoine7526/F1Repo/tree/main/Shiny).
-- Antoine, Batiste, Charline : Rédaction du [rapport](https://github.com/Antoine7526/F1Repo/tree/main/Rapport) sous R markdown.
-
+- Antoine, Batiste, Charline : Début du [*web scraping*](https://github.com/Antoine7526/F1Repo/blob/main/WebScraping/WebscrapingV3.R).
+- Antoine, Batiste, Charline : Création des graphiques avec ggplot et plotly.
+- Batiste : Création des [*bases de données*](https://github.com/Antoine7526/F1Repo/tree/main/DATA) avec le web scraping.
+- Antoine, Batiste : Création des [*fonctions des graphiques*](https://github.com/Antoine7526/F1Repo/tree/main/Fonctions).
+- Antoine : Implémentation de code [*Rcpp*](https://github.com/Antoine7526/F1Repo/tree/main/Rcpp).
+- Antoine, Charline : Création du [*package VroumVroum*](https://github.com/CharlineChamp/VroumVroum).
+- Charline : Développement de l'[*interface Shiny*](https://github.com/Antoine7526/F1Repo/tree/main/Shiny).
+- Antoine, Batiste, Charline : Rédaction du [*rapport*](https://github.com/Antoine7526/F1Repo/tree/main/Rapport) sous R markdown.
