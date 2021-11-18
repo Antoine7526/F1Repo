@@ -1,0 +1,11 @@
+---
+title: "Difficultées rencontrées"
+output: html_document
+---
+
+Comme il a été dit ci dessus, le web scraping et le Rcpp nous ont posé des problèmes. La création d'un package est le principal problème pour le Rcpp.
+
+Durant la moitié du projet, on a eu des problèmes d'accents et caractères spéciaux quand on s'échangeait les données et fichiers R. On s'est rendu compte que le problème venait du type d'encodage des fichiers de chacun et du système d'exploitation.
+
+Pour la création du package VroumVroum, il a eu des problèmes. Au début, on arrivait pas à faire télécharger les librairies nécessaires pendant l'installation du package. Le deuxième problème a été un conflit de librairies pour de l'utilisation de la fonction last_plot qui était dans les librairies ggplot2 et plotly pour l'affichage du graphique.
+

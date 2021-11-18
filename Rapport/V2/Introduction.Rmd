@@ -1,0 +1,7 @@
+---
+title: "Introduction"
+output: html_document
+---
+
+Ce projet est né lors de notre première année de master en Statistique et Sciences des données. En effet, dans le cadre de l'UE nommée Logiciels spécialisées nous avons eu carte blanche concernant ce projet. Nous avons donc décidé de le réaliser sur les résultats de la Formule 1. Le choix de la Formule 1 s'est porté sur le fait que l'intégralité de notre groupe trouvait ce domaine intéressant. La communication entre les membres du groupe hors présentiel s'est essentiellement faite sur Discord. Concernant la réalisation de ce projet elle a été faite en présentiel pendant nos heures de cours cependant nous avons également fait le choix de chaque semaines nous retrouvez pour poursuivre notre travail. Pour le code, nous avons uniquement utilisé le langage R et pour tout ce qui était communication, nous avons exploité l'outil Discord et git. Notre git est disponible sur [*GitHub*](https://github.com/Antoine7526/F1Repo). La finalité de ce projet est une application Shiny disponible sur [*ProjetF1*](https://github.com/Antoine7526/F1Repo).   
+Le projet a été divisé en quatre grandes parties: le web-scraping pour récupérer nos tableaux de données, la création des differences fonctions pour afficher les graphiques interactifs, la création d'un package qui regroupe nos fonctions et données et enfin le développement de l'interface Shiny. Cependant ce rapport est divisé en trois parties la gestion du projet, sa réalisation et enfin son évaluation générale.

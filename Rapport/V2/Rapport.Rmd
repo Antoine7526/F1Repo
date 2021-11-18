@@ -1,0 +1,129 @@
+---
+title: "Projet Formule 1"
+author: "Batiste Amistadi, Charline Champ et Antoine Grancher"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 3
+    number_sections: true
+    theme: simplex
+---
+# Introduction 
+
+Ce projet est né lors de notre première année de master en Statistique et Sciences des données. En effet, dans le cadre de l'UE nommée Logiciels spécialisées nous avons eu carte blanche concernant ce projet. Nous avons donc décidé de le réaliser sur les résultats de la Formule 1. Le choix de la Formule 1 s'est porté sur le fait que l'intégralité de notre groupe trouvait ce domaine intéressant. La communication entre les membres du groupe hors présentiel s'est essentiellement faite sur Discord. Concernant la réalisation de ce projet elle a été faite en présentiel pendant nos heures de cours cependant nous avons également fait le choix de chaque semaines nous retrouvez pour poursuivre notre travail. Pour le code, nous avons uniquement utilisé le langage R et pour tout ce qui était communication, nous avons exploité l'outil Discord et git. Notre git est disponible sur [*GitHub*](https://github.com/Antoine7526/F1Repo). La finalité de ce projet est une application Shiny disponible sur [*ProjetF1*](https://github.com/Antoine7526/F1Repo).   
+Le projet a été divisé en quatre grandes parties: le web-scraping pour récupérer nos tableaux de données, la création des differences fonctions pour afficher les graphiques interactifs, la création d'un package qui regroupe nos fonctions et données et enfin le développement de l'interface Shiny. Cependant ce rapport est divisé en trois parties la gestion du projet, sa réalisation et enfin son évaluation générale.
+
+# Gestion du projet
+
+## Cahier des charges
+
+|  |   |
+|-----------------|-----------------------|
+|  Contexte, définition du problème, motivations     |  Ce projet est né dans le cadre d'un projet à réaliser en R suite aux cours de Rémy Drouillet. On était curieux de voir des informations graphiques sur la formule 1 sur plusieurs années. |
+| Objectifs    |  Utilisation de RMarkdown, ggplot(optionnel) et rcpp (optionnel). <br> Création d'une interface Shiny et d'une librarie.  |
+|   Périmètre    | Libre.  |
+| Description fonctionelle | En premier lieu le fichier WebScrapingVfinale.R doit être lancé pour récupérer les données, on obtient 6 bases de données de type .csv. En deuxième lieu le fichier shinyapp.R doit être lancé pour avoir accés à l’interface et aux graphiques. L’utilisateur pourra choisir l’année qu’il souhaite entre 1950 et 2020 et de 1958 à 2020 pour les équipes.   |
+| Délai |  	3 mois (du 16/09 au 05/12). |
+| Livrable |  Code source réalisant la récupération des données, le traitement des données et l’interface shiny. <br> Une interface Web affichant les graphiques. <br> Un rapport. |
+
+
+## Répartition des tâches
+
+Pour la répartition des parties du projet, on a fixé au début les buts à atteindre et au fur et à mesure de l'avancée du projet on a trouvé d'autres objectifs optionnels à réaliser qui dépendaient de la contrainte du temps qui seront exposés dans la sous partie Pistes d'améliorations. On a préféré faire des "réunions" à chaque fin de session de travail pour se fixer les tâches à faire à la session suivante. On n'a pas réalisé directement un diagramme de Gantt au début du projet étant donné que l'on avait pas assez d'heures de travail en cours pour notre projet et qu'on ne pouvait pas prévoir toutes les sessions et volume horaire de travail en début de projet. La répartition globale des parties par ordre chronologique du début de celles ci est la suivante :
+
+- Antoine, Batiste, Charline : début du [*web scraping*](https://github.com/Antoine7526/F1Repo/blob/main/WebScraping/WebscrapingV3.R).
+- Antoine, Batiste, Charline : création des graphiques avec ggplot et plotly.
+- Batiste : Création des [*bases de données*](https://github.com/Antoine7526/F1Repo/tree/main/DATA) avec le web scraping.
+- Antoine, Batiste : création des [*fonctions des graphiques*](https://github.com/Antoine7526/F1Repo/tree/main/Fonctions).
+- Antoine : implémentation de code [*Rcpp*](https://github.com/Antoine7526/F1Repo/tree/main/Rcpp).
+- Antoine, Charline : création du [*package VroumVroum*](https://github.com/CharlineChamp/VroumVroum).
+- Charline : développement de l'[*interface Shiny*](https://github.com/Antoine7526/F1Repo/tree/main/Shiny).
+- Antoine, Batiste, Charline : Rédaction du [*rapport*](https://github.com/Antoine7526/F1Repo/tree/main/Rapport) sous R markdown.
+
+# Réalisation 
+
+## Récupération des données
+
+Le web scraping consiste à récolter des données sur des sites web. Pour ce projet sur la formule 1, on a décidé de créer 6 bases de données pour produire des graphiques. On a dans un premier temps récupérer l'année 2020 (cf WebscrapingV3.R) sur le site officiel de la [*formule 1*](https://www.formula1.com/en/results.html) puis on a développé notre code pour chaque base de données de 1950 à 2020 sauf pour les équipes où les classements ont commencé qu'en 1958 (cf WebscrapingV4.R). On a rencontré plusieurs problèmes quand on a récupéré les données notamment car le site avait une version portable ce qui a entrainé un nettoyage des données de caractères inutiles.
+<br>
+
+
+
+<br/>
+Avec dataDriversParRaces on a eu un plus gros problème pour la création des adresses url des pilotes. Une partie de l'url est créée à partir du nom du pilote, seulement certains noms étaient particuliers, ils étaient composés ou avaient un "de" ou un prénom ou nom de moins de 3 lettres. On a donc du faire une réécriture manuelle de cette partie du l'url pour ces pilotes (cf WebscrapingV4.R lignes 260 à 406).
+<br>
+
+
+
+<br/>
+Pour dataStartingGrid on a rencontré un autre problème du web scraping. L'url utilisée est de ce type :   
+<span style="color:black">htt</span><span style="color:black">ps://www.formula1.com/en/results.html/</span> année <span style="color:black">/races/</span> numéro unique associé à un grand prix <span style="color:black">/</span> nom du grand prix <span style="color:black">/starting-grid.html</span>. Le problème vient que le numéro unique attribué à chaque grand prix n'a pas d'ordre logique (cf WebscrapingV4.R ligne 494).
+<br>
+
+
+
+<br/>
+Pour certains graphiques on utilise les données de ces 2 bases de données, on s'est rendu compte que pour certaines années on s'attendait à avoir le même nombre de lignes entre ces 2 bases de données comme l'un à les données de tous les pilotes sur chaque grand prix à l'arrivée et l'autre les données de chaque grand prix des pilotes au départ mais on n'avait pas ça. Cela vient du fait que là où¹ on récupère le nom des pilotes, on a que les pilotes qui ont eu au moins 1 point dans l'année et pour les autres il n'y a pas de lien pour récupérer ces données. De ce problème on a identifié un problème dans dataDrivers qui du coup ne contenait pas tous les pilotes par année. On a donc décidé de changer de site web pour récupérer les données. Au lieu de faire pilote par pilote par année, on récolte les données grand prix par grand prix par année. La taille des données est une nouvelle fois différente mais on a gagné des données, cette fois ci le problème vient du fait que certaines voitures sont copilotées et qu'il y a un pilote au départ et 2 à l'arrivée par exemple. Un autre problème qui aurait pu être identifié avant est que la starting grid où l'on récupère les données de dataStartingGrid n'est pas présente pour tous les grands prix entre 1950 et 1959 donc on avait pour certains grands prix des données fausses. On a donc décidé de changer de site pour créer les 3 bases de données citées.
+<br>
+
+
+
+<br/>
+On a utilisé le site [*racing-statistics*](https://www.racing-statistics.com/en/seasons) où on a eu aussi des problèmes entre les pilotes de départ et d'arrivée. On a donc sélectionné pour les données d'arrivée que celles des pilotes qui sont partis pour avoir les données qu'on voulait. Les pilotes qui étaient à l'arrivée et pas au départ étaient en général des pilotes qui n'avaient pas pris les départs mais qui étaient dans la grille d'arrivée une erreur du site surement. On obtient donc le fichier WebscrapingVfinale.R qui crée sans erreur et comme on veut les 6 bases de données.
+
+## Traitement des données 
+
+Après avoir recueilli les donné par web scraping, nous nous sommes tout de suite mis à réfléchir sur l’implémentation de fonctions permettant d’avoir une visualisation des données. Nous avons utilisé différents formats afin de donner une certaine diversité sur les graphiques. Nous avons utilisé :  
+  
+-	 Des diagrammes circulaires (en Donut) pour représenter des fréquences (dans notre cas pour le pourcentage de victoire des écuries sur une saison ou encore le pourcentage d’abandon des écuries sur une saison).  
+  
+-	Des diagrammes en barre pour représenter des fréquences ou des quantités (moyenne des points d’un pilote sur une saison, fréquence des positions finales des pilotes ayant fait le tour le plus rapide, nombre d’abandons par pilote, nombre d’abandon par grand prix)  
+  
+-	Des courbes, permettant la visualisation de l’évolution des points d’un pilote ou d’une écurie sur une saison.  
+  
+-	Un nuage de points, permettant d’obtenir une comparaison entre la position départ et la position d’arrivée.  
+  
+Toutes les fonctions permettent la visualisation sur une année et tous les grands prix. Seule la fonction permettant la comparaison entre la position de départ et la position d’arrivée fonctionne sur un seul grand prix. Nous avons décidé de ne pas prendre en compte la saison 2021 car elle est toujours en cours. Nos visualisations se concentrent donc de 1950 à 2020.  
+  
+Toutes ces fonctions sont présentes dans le fichier [*VroumVroumFunc*](https://github.com/Antoine7526/F1Repo/tree/main/Fonctions)  et ont été réalisées sous *plotly* afin d’avoir des graphiques dynamiques. Il existe plusieurs versions de ce fichier. En effet, nous avons dû adapter nos fonctions en fonction des données recueillies.  
+  
+Afin de tester ces fonctions, nous avons créé un fichier [*TestingFile*](https://github.com/Antoine7526/F1Repo/tree/main/Test). Ce dernier nous permet dans un premier temps de tiré au hasard une année entre 1950 et 2020, et un grand prix associé à l’année tirée. Cela nous permet de tester nos fonctions sur différentes années et différents grands prix.  
+  
+Une fois nos fonctions nous paraissant opérationnelles, nous avons travaillé à l’élaboration d’un package nommé [*VroumVroum*](https://github.com/CharlineChamp/VroumVroum). Ce dernier nous permet de charger directement les fonctions, ce qui est très utile. Par la suite, après avoir obtenue nos data frames finals, nous avons décidé de les ajouter directement aux package. Cela a permis d’optimiser le temps de chargement de notre application *shiny* (cf. Partie 3).  
+  
+Pour continuer, nous avons également réalisé des fonctions en [*Rcpp*](https://github.com/Antoine7526/F1Repo/tree/main/Rcpp) (en mode *inLine*, en mode classique avec un fichier source *.cpp*). En mode *inLine*, nous avons implémenter une fonction    « *add* » permettant l’addition entre trois éléments, et une « *nb_elt* » donnant le nombre d’élément d’un vecteur de caractères. Dans le fichier *.cpp* nous avons fait deux fonctions calculant des moyennes, « *meanC* » et « *moyenne* », l’un calculant la moyenne sur un vecteur de *numeric*, l’autre calculant la moyenne sur un tableau de *int* de taille *n*. Pour donner suite à cela nous avons voulons créer un package [*VroumVroumCpp*](https://github.com/Antoine7526/VroumVroumCpp). Nous nous sommes heurté à des difficultés qui nous prenaient pas mal de temps. Or, les fonctions implémentées en *Rcpp* n'étaient pas utiles à notre projet, car nous ne les utilisions pas. Nous avons donc décidé de mettre cette partie de côté afin d’avancer sur le projet et d’y revenir plus tard si le temps nous le permettrait.
+
+## Développement de l'interface Shiny
+
+# Evaluation générale
+
+## Difficultées rencontrées
+
+Comme il a été dit ci dessus, le web scraping et le Rcpp nous ont posé des problèmes. La création d'un package est le principal problème pour le Rcpp.
+
+Durant la moitié du projet, on a eu des problèmes d'accents et caractères spéciaux quand on s'échangeait les données et fichiers R. On s'est rendu compte que le problème venait du type d'encodage des fichiers de chacun et du système d'exploitation.
+
+## Pistes d'améliorations
+
+# Conclusion 
+
+On a préféré faire des conclusions personnelles qu'une conclusion générale.
+
+Antoine :
+
+
+
+Batiste :
+
+Ce projet m'a beaucoup plu, tant le sujet que le résultat final obtenu. J'ai pu approfondir mes compétences de ggplot2 mais aussi pu découvrir la création de package de R et manipuler de nouvelles librairies notamment rvest pour le web scraping et l'utilisation de Git. Je trouve que travailler sous forme de projet avec une grande autonomie est bien plus formateur et plus épanouissant que si on avait eu des cours standards.
+
+Charline :
+
+# Bibliographie
+
+
+
+
+
