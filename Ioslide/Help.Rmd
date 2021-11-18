@@ -18,6 +18,7 @@ Voici un petit diaporama permettant de vous donner de l'aide sur la navigation d
 ## Page d'accueil
 
 <img src="Accueil.png" height = '500' width ='777'/>
+
  <a href="javascript:slidedeck.prevSlide()">
       <img class="animated-navl" border="0" src="arrow.png" /></a>
 
