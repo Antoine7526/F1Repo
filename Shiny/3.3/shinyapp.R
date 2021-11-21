@@ -79,11 +79,11 @@ ui <- dashboardPage(
                        column(width = 9, box(title = "Représentation de la somme des points gagnés par écurie par grand prix",width = NULL,solidHeader = TRUE, status = "info",style="circle",label = NULL, plotlyOutput("pointecuriegp"))))
       ),
       tabItem(tabName = "Abandon",fluidRow(column(width = 12, box(title = "Année", width = NULL, solidHeader = TRUE, status = "info",style="circle",selectInput("anneeabandon", label = NULL,choices = seq(2020,1950, by =-1)),selected ="choisir"))),
-              fluidRow(column(width = 8, box(title = "Nombre de DNF et DNS de chaque écurie",width = NULL,solidHeader = TRUE, status = "info",style="circle",label = NULL,plotlyOutput("dnfteam"))),
+              fluidRow(column(width = 8, box(title = "Nombre d'abandons pour chaque écurie",width = NULL,solidHeader = TRUE, status = "info",style="circle",label = NULL,plotlyOutput("dnfteam"))),
                        column(width = 4, box(title = "Interprétation",width = NULL,solidHeader = TRUE, status = "info",style="circle",label = NULL,g7))),
               fluidRow(column(width = 3, box(title = "Interprétation",width = NULL,solidHeader = TRUE, status = "info",style="circle",label = NULL,g8)),
-                       column(width = 9, box(title = "Nombre de DNF et DNS de chaque pilote",width = NULL,solidHeader = TRUE, status = "info",style="circle",label = NULL, plotlyOutput("dnfd")))),
-              fluidRow(column(width = 9, box(title = "Nombre de DNF et DNS de chaque grand prix",width = NULL,solidHeader = TRUE, status = "info",style="circle",label = NULL,plotlyOutput("dnfgp"))),
+                       column(width = 9, box(title = "Nombre d'abandons pour chaque pilote",width = NULL,solidHeader = TRUE, status = "info",style="circle",label = NULL, plotlyOutput("dnfd")))),
+              fluidRow(column(width = 9, box(title = "Nombre d'abandons pour chaque grand prix",width = NULL,solidHeader = TRUE, status = "info",style="circle",label = NULL,plotlyOutput("dnfgp"))),
                        column(width = 3, box(title = "Interprétation",width = NULL,solidHeader = TRUE, status = "info",style="circle",label = NULL,g9))
               )
       ),
@@ -99,7 +99,7 @@ ui <- dashboardPage(
                        column(width = 6, box(title = "Nombre de points moyens pour chaque pilote",width = NULL,solidHeader = TRUE, status = "info",style="circle",label = NULL,plotlyOutput("ptmoyA2")))),
               fluidRow(column(width = 6, box(title = "Pourcentage de victoires par écurrie",width = NULL,solidHeader = TRUE, status = "info",style="circle",label = NULL,plotlyOutput("datateamanalyseA1"))),
                        column(width = 6, box(title = "Pourcentage de victoires par écurrie",width = NULL,solidHeader = TRUE, status = "info",style="circle",label = NULL,plotlyOutput("datateamanalyseA2")))),
-              fluidRow(column(width = 9, box(title = "Fréqeunce d'abandon de chaque pilote entre deux années choisies",width = NULL,solidHeader = TRUE, status = "info",style="circle",label = NULL,plotlyOutput("dnffrq"))),
+              fluidRow(column(width = 9, box(title = "Fréqeunce d'abandons de chaque pilote entre deux années choisies",width = NULL,solidHeader = TRUE, status = "info",style="circle",label = NULL,plotlyOutput("dnffrq"))),
                        column(width = 3, box(title = "Interprétation",width = NULL,solidHeader = TRUE, status = "info",style="circle",label = NULL,g10))
               )
               
