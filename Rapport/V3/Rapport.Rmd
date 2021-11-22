@@ -14,7 +14,7 @@ output:
 
 Ce projet est né au cours de notre première année de master en Statistique et Sciences des Données dans le cadre d'une UE, nommée Logiciels spécialisés, où nous avons eu libre choix du sujet. Nous avons décidé, de manière collégiale, de le réaliser sur les résultats de la *Formule 1*. 
 Ce projet a été essentiellement réalisé en présentiel pendant nos heures de cours, mais également lors de créneaux que nous nous étions fixés chaque semaine à la bibliothèque universitaire. Il arrivait parfois que l'on travaille de chez nous. Pour ce faire, nous avons utilisé *Discord* comme outil de communication et *GitHub* pour le partage et le versioning de nos codes. Enfin, le langage **```R```** a été utilisé pour l'ensemble du projet.  
-Vous pouvez retrouver tout notre travail sur [*GitHub*](https://github.com/Antoine7526/F1Repo). La finalité de ce projet est une application Shiny disponible [ici](https://github.com/Antoine7526/F1Repo/blob/main/Shiny/3.3/shinyapp.R).   
+Vous pouvez retrouver tout notre travail sur [*GitHub*](https://github.com/Antoine7526/F1Repo). La finalité de ce projet est une application Shiny disponible [ici](https://github.com/Antoine7526/F1Repo/blob/main/Shiny/3.4/shinyapp.R).   
 Ce projet s'est divisé en quatre parties:
 
 - le web scraping, afin de récupérer nos tableaux de données  
@@ -114,15 +114,38 @@ Pour continuer, nous avons également réalisé des fonctions en [**```Rcpp```**
 
 ## Développement de l'interface Shiny
 
+Afin de terminer notre projet, nous avons créer une interface **```shiny```** pour présenter tout ce qui le constitue, c'est-à-dire par exemple nos graphiques, notre rapport ou encore nos liens sources. Le but étant d’avoir quelque chose d’intuitif nous permettant de le déposer sur internet pour faire perdurer le projet dans le temps. Dans cette partie, nous ne rentrerons pas en détail dans le code. Pour le voir plus en détail il est disponible [ici](https://github.com/Antoine7526/F1Repo/blob/main/Shiny/3.3/shinyapp.R). 
+  
+L’interface devait comprendre une structure simple : des éléments pour permettre à l’utilisateur de faire le choix des paramètres et une zone où le graphique s’afficherait accompagné d'une petite interprétation. Pour le choix des paramètres, l’utilisateur doit pouvoir choisir l’année qu'il souhaite regarder, et dans certain cas il aura également le choix de sélectionner un grand prix.
+
+Le développement de notre interface web s'est fait en langage **```R```**, à l'aide du package **```shiny```** . Nous nous sommes exclusivement reposés sur cette librairie pour tout ce qui est de l’interface. La librairie **```shiny```** facilite la création d’applications web interactives directement à partir de **```R```**. Elle permet d’héberger des applications autonomes sur une page web ou les intégrer dans des documents **```RMarkdown```**. On peut également étendre les applications **```shiny```** avec des thèmes **```CSS```**, des widgets **```html```** et des actions **```JavaScript```**. Ce package combine la puissance de calcul de **```R```** avec l’interactivité du web.
+
+Un site internet est complétement dédié à la librairie **```shiny```**. Il est composé d’explications pour chaque fonction disponible dans ce package, il y a une partie avec de nombreux articles qui expliquent pas à pas le processus pour construire une interface web. Il nous offre aussi une large galerie de site internet développé sous ce package, vous pouvez le retrouver [ici](https://shiny.rstudio.com/gallery/). Nous nous en sommes beaucoup servi car il nous suffisait d’aller chercher un site sur lequel il y avait ce que nous voulions, puis d’aller voir le code qui était fourni avec pour comprendre les mécanismes.  
+
+
+Pour vous expliquer brièvement le code, il se constitue de deux grosses fonctions essentielles au fonctionement de l’application : 
+
+- une fonction « ui »
+- une fonction « server » 
+
+Dans la fonction « ui » nous retrouvons tout ce qui touche à la mise en page : la disposition des éléments, les couleurs, les polices, les onglets, la manière dont les graphiques s’affichent, etc.   
+
+Comme cité plutôt, lors de ce projet nous avons créé un package nommée [*VroumVroum*](https://github.com/CharlineChamp/VroumVroum). Dans ce package, nous avons toutes nos fonctions utiles aux traitements de nos données, c'est-à-dire à l'affichage de nos différents graphiques. Egalement présent dans ce package, toutes nos données récupérées à l'aide du web scraping. Ainsi dans la fonction « server », nous avons principalement utilisé ce package. Le processus reste le même, nous avons créer une fonction pour chaque graphique à afficher. Dans nos fonctions nous avons commencer par filtrer les données par rapport à l'année sélectionnez par l'utilisateur, ou encore même par le grand prix. Ensuite il nous suffisait d'appeler nos fonctions présentes dans le package et d'y insérer nos données filtrées. Nous avons fait un gain non négligeable de place.  
+
+Une fois l’application créée, il est très facile de la publier sur internet. Nous avons déployer l’application sur un serveur de la librairie shiny : shinyapps.io. 
+
+
 # Evaluation générale
 
 ## Difficultées rencontrées
 
-Comme il a été dit ci dessus, le web scraping et le Rcpp nous ont posé des problèmes. La création d'un package est le principal problème pour le Rcpp.
+Discutons maintenant des différentes difficultés que nous avons rencontré lors de ce projet.
 
-Durant la moitié du projet, on a eu des problèmes d'accents et caractères spéciaux quand on s'échangeait les données et fichiers R. On s'est rendu compte que le problème venait du type d'encodage des fichiers de chacun et du système d'exploitation.
+Comme vu précedemment, la récupération des données sur le site nous a posé quelques problèmes: la génération automatique des liens pour récupérer, l'incohérence entre le nombre de pilotes aux départs différents du nombre de pilotes à l'arrivée, etc. Cependant un autre problème est apparu lors de ce projet. En effet, durant la moitié du projet, nous avons eu des problèmes d'accents et caractères spéciaux lorsque l'on s'échangeait les données et fichiers R. Ainsi une partie du groupe à du relancer les fichiers du web scraping pour nous permettre d'avoir des données sans caractères spéciaux. Après réflexion, nous nous sommes rendu compte que le problème venait du type d'encodage des fichiers de chacun mais également de nos systèmes d'exploitations qui sont différent.
 
-Pour la création du package VroumVroum, il a eu des problèmes. Au début, on arrivait pas à faire télécharger les librairies nécessaires pendant l'installation du package. Le deuxième problème a été un conflit de librairies pour de l'utilisation de la fonction last_plot qui était dans les librairies ggplot2 et plotly pour l'affichage du graphique.
+Deuxièmement un autre souçi est apparu, le Rcpp. La création d'un package est le principal problème pour le Rcpp. (à développer peut être)
+
+Troisèmement, la création du package VroumVroum qui n'a pas été une mince affaire. En effet, nous voulions que les librairies nécessaires dans nos fonctions s'installer automatiquement (si elles ne sont pas déjà présentes) pendant l'installation de notre package. Une fois cela débloqué un second problème a apparu, un conflit de librairies. Nous utilisons dans le package VroumVroum la librairie **```ggplot2```** et **```plotly```**, ainsi un conflit a apparu lors de l'utilisation de la fonction last_plot qui est présente dans ces deux librairies. Pour régler ce problème nous avons dû, au lieu d'importer tous le package **```ggplot2```** et **```plotly```**, n'importer que les fonctions dont nous avions l'utilité.
 
 ## Pistes d'améliorations
 
