@@ -362,9 +362,11 @@ Nous avons décidé de ne pas prendre en compte la saison 2021 car elle est touj
 <h2 number="4.1"><span class="header-section-number">4.1</span> Difficultées rencontrées</h2>
 <p>Comme il a été dit ci dessus, le web scraping et le Rcpp nous ont posé des problèmes. La création d’un package est le principal problème pour le Rcpp.</p>
 <p>Durant la moitié du projet, on a eu des problèmes d’accents et caractères spéciaux quand on s’échangeait les données et fichiers R. On s’est rendu compte que le problème venait du type d’encodage des fichiers de chacun et du système d’exploitation.</p>
+<p>Pour la création du package VroumVroum, il a eu des problèmes. Au début, on arrivait pas à faire télécharger les librairies nécessaires pendant l’installation du package. Le deuxième problème a été un conflit de librairies pour de l’utilisation de la fonction last_plot qui était dans les librairies ggplot2 et plotly pour l’affichage du graphique.</p>
 </div>
 <div id="pistes-daméliorations" class="section level2" number="4.2">
 <h2 number="4.2"><span class="header-section-number">4.2</span> Pistes d’améliorations</h2>
+<p>golem &lt;- shiny questionnaire</p>
 </div>
 </div>
 <div id="conclusion" class="section level1" number="5">
@@ -374,10 +376,29 @@ Nous avons décidé de ne pas prendre en compte la saison 2021 car elle est touj
 <p>Batiste :</p>
 <p>Ce projet m’a beaucoup plu, tant le sujet que le résultat final obtenu. J’ai pu approfondir mes compétences de <strong><code>ggplot2</code></strong> mais aussi pu découvrir la création de package de <strong><code>R</code> </strong> et manipuler de nouvelles librairies notamment <strong><code>rvest</code></strong> pour le web scraping et l’utilisation de <em>GitHub</em>. Je trouve que travailler sous forme de projet avec une grande autonomie est bien plus formateur et plus épanouissant que si on avait eu des cours standards.</p>
 <p>Charline :</p>
-<p>Pour ma conclusion personnelle, je pense qu’il est important de commencer par dire que j’ai apprécié réaliser ce projet avec mes camarades. Cela m’a permis d’acquérir de nouvelles connaissances en <strong><code>R</code> </strong> et de me rendre compte de ce que je suis capable de faire. J’ai pu approndir mes connaissances pour la création d’une application <strong><code>shiny</code></strong> et me découvrir une réelle passion pour cela. De plus, j’ai pu acquérir des connaissances en terme de création de package ou encore même d’utilisation du package <strong><code>ggplot2</code></strong> (ou <strong><code>plotly</code></strong>). Etre livré à nous même ne nous a été que bénéfique.</p>
+<p>Pour ma conclusion personnelle, je pense qu’il est important de commencer par dire que j’ai apprécié réaliser ce projet avec mes camarades. Cela m’a permis d’acquérir de nouvelles connaissances en <strong><code>R</code> </strong> et de me rendre compte de ce que je suis capable de faire. J’ai pu approndir mes connaissances pour la création d’une application shiny et me découvrir une réelle passion pour cela. De plus, j’ai pu acquérir des connaissances en terme de création de package ou encore même d’utilisation du package ggplot (ou plotly). Etre livré à nous même ne nous a été que bénéfique.</p>
 </div>
 <div id="bibliographie" class="section level1" number="6">
 <h1 number="6"><span class="header-section-number">6</span> Bibliographie</h1>
+<div id="web-scraping" class="section level2" number="6.1">
+<h2 number="6.1"><span class="header-section-number">6.1</span> Web scraping :</h2>
+<ol style="list-style-type: decimal">
+<li><p>Site officiel de la Formule 1, <a href="https://www.formula1.com/" class="uri">https://www.formula1.com/</a></p></li>
+<li><p>Site de données sur la Formule 1, <a href="https://www.racing-statistics.com/en" class="uri">https://www.racing-statistics.com/en</a></p></li>
+</ol>
+</div>
+<div id="traitement-des-données-1" class="section level2" number="6.2">
+<h2 number="6.2"><span class="header-section-number">6.2</span> Traitement des données :</h2>
+<ol start="3" style="list-style-type: decimal">
+<li><p>“ggplot2 graduation des axes”, <a href="http://www.sthda.com/french/wiki/ggplot2-graduation-des-axes-guide-pour-personnaliser-les-etiquettes-des-graduations-logiciel-r-et-visualisation-de-donnees" class="uri">http://www.sthda.com/french/wiki/ggplot2-graduation-des-axes-guide-pour-personnaliser-les-etiquettes-des-graduations-logiciel-r-et-visualisation-de-donnees</a></p></li>
+<li><p>“suppression espaces superflus”,2011 <a href="http://forums.cirad.fr/logiciel-R/viewtopic.php?t=4446" class="uri">http://forums.cirad.fr/logiciel-R/viewtopic.php?t=4446</a></p></li>
+</ol>
+</div>
+<div id="github" class="section level2" number="6.3">
+<h2 number="6.3"><span class="header-section-number">6.3</span> Github</h2>
+<p>nieme. Dossier contenant tous nos fichiers pour le projet, <a href="https://github.com/Antoine7526/F1Repo" class="uri">https://github.com/Antoine7526/F1Repo</a></p>
+<p>nieme+1. Package pour l’interface shiny, <a href="https://github.com/CharlineChamp/VroumVroum" class="uri">https://github.com/CharlineChamp/VroumVroum</a></p>
+</div>
 </div>
 
 

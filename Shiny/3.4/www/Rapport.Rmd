@@ -122,7 +122,12 @@ Comme il a été dit ci dessus, le web scraping et le Rcpp nous ont posé des pr
 
 Durant la moitié du projet, on a eu des problèmes d'accents et caractères spéciaux quand on s'échangeait les données et fichiers R. On s'est rendu compte que le problème venait du type d'encodage des fichiers de chacun et du système d'exploitation.
 
+Pour la création du package VroumVroum, il a eu des problèmes. Au début, on arrivait pas à faire télécharger les librairies nécessaires pendant l'installation du package. Le deuxième problème a été un conflit de librairies pour de l'utilisation de la fonction last_plot qui était dans les librairies ggplot2 et plotly pour l'affichage du graphique.
+
 ## Pistes d'améliorations
+
+golem <- shiny
+questionnaire
 
 # Conclusion 
 
@@ -138,11 +143,36 @@ Ce projet m'a beaucoup plu, tant le sujet que le résultat final obtenu. J'ai pu
 
 Charline :
 
-Pour ma conclusion personnelle, je pense qu’il est important de commencer par dire que j’ai apprécié réaliser ce projet avec mes camarades. Cela m’a permis d’acquérir de nouvelles connaissances en **```R``` ** et de me rendre compte de ce que je suis capable de faire. J'ai pu approndir mes connaissances pour la création d'une application **```shiny```** et me découvrir une réelle passion pour cela. De plus, j'ai pu acquérir des connaissances en terme de création de package ou encore même d'utilisation du package **```ggplot2```** (ou **```plotly```**). Etre livré à nous même ne nous a été que bénéfique. 
+Pour ma conclusion personnelle, je pense qu’il est important de commencer par dire que j’ai apprécié réaliser ce projet avec mes camarades. Cela m’a permis d’acquérir de nouvelles connaissances en **```R``` ** et de me rendre compte de ce que je suis capable de faire. J'ai pu approndir mes connaissances pour la création d'une application shiny et me découvrir une réelle passion pour cela. De plus, j'ai pu acquérir des connaissances en terme de création de package ou encore même d'utilisation du package ggplot (ou plotly). Etre livré à nous même ne nous a été que bénéfique. 
 
 # Bibliographie
 
+## Web scraping :
 
+1. Site officiel de la Formule 1,
+https://www.formula1.com/
+
+2. Site de données sur la Formule 1,
+https://www.racing-statistics.com/en
+
+## Traitement des données :
+
+3. "ggplot2 graduation des axes",
+http://www.sthda.com/french/wiki/ggplot2-graduation-des-axes-guide-pour-personnaliser-les-etiquettes-des-graduations-logiciel-r-et-visualisation-de-donnees
+
+4. "suppression espaces superflus",2011
+http://forums.cirad.fr/logiciel-R/viewtopic.php?t=4446
+
+
+
+
+## Github
+
+nieme. Dossier contenant tous nos fichiers pour le projet,
+https://github.com/Antoine7526/F1Repo
+
+nieme+1. Package pour l'interface shiny,
+https://github.com/CharlineChamp/VroumVroum
 
 
 
