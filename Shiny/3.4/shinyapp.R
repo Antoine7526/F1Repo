@@ -22,7 +22,7 @@ g10 <- "Sur votre gauche vous remarquerez un diagramme en barre. Ce diagramme re
 
 ui <- dashboardPage(
   #Tableau du haut
-  header = dashboardHeader(title = tags$img(src='logoF1.png', height = '50', width ='150'),
+  header = dashboardHeader(title = tags$img(src='logo.png', height = '50', width ='150'),
                            dropdownMenu(type = "messages", 
                                         icon = icon("info-circle"),
                                         badgeStatus =NULL,
