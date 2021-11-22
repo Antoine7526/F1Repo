@@ -17,8 +17,8 @@ Ce projet a été essentiellement réalisé en présentiel pendant nos heures de
 Vous pouvez retrouver tout notre travail sur [*GitHub*](https://github.com/Antoine7526/F1Repo). La finalité de ce projet est une application Shiny disponible [ici](https://github.com/Antoine7526/F1Repo/blob/main/Shiny/3.3/shinyapp.R).   
 Ce projet s'est divisé en quatre parties:
 
-- le web-scraping, afin de récupérer nos tableaux de données  
-- l'mplémentation des differentes fonctions permettant d'afficher des graphiques interactifs   
+- le web scraping, afin de récupérer nos tableaux de données  
+- l'implémentation des differentes fonctions permettant d'afficher des graphiques interactifs   
 - la création d'un package qui regroupe toutes nos fonctions et tableaux de données  
 - le développement d'une interface Shiny.    
 
@@ -47,7 +47,7 @@ Nous n'avons pas réalisé directement de diagramme de Gantt car compte tenu de 
 - Antoine, Batiste, Charline : Création des graphiques avec **```ggplot2```** et **```plotly```**.
 - Batiste : Création des [*bases de données*](https://github.com/Antoine7526/F1Repo/tree/main/DATA) avec le web scraping.
 - Antoine, Batiste : Création des [*fonctions*](https://github.com/Antoine7526/F1Repo/tree/main/Fonctions) permettant la visualisation de données.
-- Antoine: Crétation de fichiers [*test*](https://github.com/Antoine7526/F1Repo/tree/main/Test) permettant de tester les fonctions.
+- Antoine: Création de fichiers [*test*](https://github.com/Antoine7526/F1Repo/tree/main/Test).
 - Antoine : Implémentation de code [```Rcpp```](https://github.com/Antoine7526/F1Repo/tree/main/Rcpp).
 - Antoine, Charline : Création du package [```VroumVroum```](https://github.com/CharlineChamp/VroumVroum).
 - Charline : Développement de l'interface[```shiny```](https://github.com/Antoine7526/F1Repo/tree/main/Shiny).
@@ -81,7 +81,7 @@ Le problème vient que le numéro unique attribué à chaque grand prix n'a pas 
 <br/>
 Pour certaines fonctions, nous utilisions **```dataDriversParRaces```** et **```dataStartingGrid```**. Comme la première base de données contient l'ensemble des positions d'arrivées de chaque pilote et la deuxième, l'ensemble des positions de départ, nous nous attendions à avoir le même nombres de lignes. Or ce n'était pas toujours le cas. Ce problème vient du fait que sur le site officiel de la *Formule 1*, sont répertoriés (à l'endroit ou l'on récupèrait les positions d'arrivées) seulement les pilotes ayant gagné au moins un point sur la saison. Il était donc normal que nous nous retrouvions avec cette différence de lignes entre les deux bases de données. De ce problème en a découlé un nouveau, **```dataDrivers```**(notre base de données sensée contenir tous les pilotes) ne contenait pas tous les pilotes.  
   
-Pour palier à ce problème, nous avons décider de récolter nos données sur un autre site web :[*racing-statistics*](https://www.racing-statistics.com/en/seasons). Au lieu de récupèrer les données pilote par pilote pour chaque année, nous récoltons grand prix par grand prix pour chaque année. La taille des tableaux est une nouvelle fois différente mais ce processus nous permet de gagner des données. Le problème venait du fait que sur certains grand prix, des voitures pouvaient être copilotées, il y avait donc un pilote au départ mais deux à l'arriver.  
+Pour palier à ce problème, nous avons décider de récolter nos données sur un autre site web :[*racing-statistics*](https://www.racing-statistics.com/en/seasons). Au lieu de récupèrer les données pilote par pilote pour chaque année, nous récoltons grand prix par grand prix pour chaque année. La taille des tableaux est une nouvelle fois différente mais ce processus nous a permis de gagner des données. Ce problème venait du fait que sur certains grand prix, des voitures pouvaient être copilotées, il y avait donc un pilote au départ mais deux à l'arrivée.  
 Nous avons donc fait le choix de seulement sélectionner les pilotes qui sont partis pour régler ce problème.  
   
 (**voir avec Batiste**)  
@@ -101,13 +101,14 @@ Après avoir recueilli les données par web scraping, nous nous sommes tout de s
   
 -	Un nuage de points, permettant d’obtenir une comparaison entre la position départ et la position d’arrivée.  
   
-Toutes les fonctions permettent la visualisation sur une année et sur tous les grands prix. Seule la fonction permettant la comparaison entre la position de départ et la position d’arrivée fonctionne sur un seul grand prix. Nous avons décidé de ne pas prendre en compte la saison 2021 car elle est toujours en cours. Nos visualisations se concentrent donc de 1950 à 2020.  
+Toutes les fonctions permettent la visualisation sur une année et sur tous les grands prix. Seule la fonction permettant la comparaison entre la position de départ et la position d’arrivée fonctionne sur un seul grand prix.  
+Nous avons décidé de ne pas prendre en compte la saison 2021 car elle est toujours en cours. Nos visualisations se concentrent donc de 1950 à 2020.  
   
 Toutes ces fonctions sont présentes dans le fichier [*VroumVroumFunc*](https://github.com/Antoine7526/F1Repo/tree/main/Fonctions)  et ont été réalisées sous **```plotly```** afin d’avoir des graphiques intéractifs. Il existe plusieurs versions de ce fichier. En effet, nous avons dû adapter nos fonctions en rapport avec les données recueillies.  
   
 Afin de tester ces fonctions, nous avons créé un fichier [*TestingFile*](https://github.com/Antoine7526/F1Repo/tree/main/Test). Ce dernier nous permet dans un premier temps de tiré au hasard une année entre 1950 et 2020, et un grand prix associé à l’année tirée. Cela nous permet de tester nos fonctions sur différentes années et sur différents grands prix.  
   
-Une fois nos fonctions nous paraissant opérationnelles, nous avons travaillé à l’élaboration d’un package nommé [*VroumVroum*](https://github.com/CharlineChamp/VroumVroum). Ce dernier nous permet de charger directement les fonctions, ce qui est très utile. Par la suite, après avoir obtenu nos base de données finales, nous avons décidé de les ajouter directement aux package. Cela a permis d’optimiser le temps de chargement de notre application shiny (*cf*. Partie 3).  
+Une fois nos fonctions nous paraissant opérationnelles, nous avons travaillé à l’élaboration d’un package nommé [*VroumVroum*](https://github.com/CharlineChamp/VroumVroum). Ce dernier nous permet de charger directement les fonctions, ce qui est très utile. Par la suite, après avoir obtenu nos bases de données finales, nous avons décidé de les ajouter directement au package. Cela a permis d’optimiser le temps de chargement de notre application shiny (*cf*. Partie 3).  
   
 Pour continuer, nous avons également réalisé des fonctions en [**```Rcpp```**](https://github.com/Antoine7526/F1Repo/tree/main/Rcpp) (en mode *inLine*, en mode classique avec un fichier source *.cpp*). En mode *inLine*, nous avons implémenter une fonction **```add```** permettant l’addition entre trois éléments, et une **```nb_elt```** donnant le nombre d’éléments d’un vecteur de caractères. Dans le fichier *.cpp* nous avons fait deux fonctions calculant des moyennes, **```meanC```** et **```moyenne```**, l’un calculant la moyenne sur un vecteur de **```numeric```**, l’autre calculant la moyenne sur un tableau de **```int```** de taille $n$. Pour donner suite à cela nous avons voulu créer un package [*VroumVroumCpp*](https://github.com/Antoine7526/VroumVroumCpp). Nous nous sommes heurtés à des difficultés qui nous prenaient pas mal de temps. Or, les fonctions implémentées en **```Rcpp```** n'étaient pas utiles à notre projet, car nous ne les utilisions pas. Nous avons donc décidé de mettre cette partie de côté afin d’avancer sur le projet et d’y revenir plus tard si le temps nous le permettait.
 
@@ -125,7 +126,7 @@ Durant la moitié du projet, on a eu des problèmes d'accents et caractères sp�
 
 # Conclusion 
 
-On a préféré faire des conclusions personnelles qu'une conclusion générale.
+Pour finir, nous avons fait le choix de faire une conclusion personnelle sur ce projet plutôt qu'une conclusion générale.
 
 Antoine :
 
@@ -136,6 +137,8 @@ Batiste :
 Ce projet m'a beaucoup plu, tant le sujet que le résultat final obtenu. J'ai pu approfondir mes compétences de **```ggplot2```** mais aussi pu découvrir la création de package de **```R``` ** et manipuler de nouvelles librairies notamment **```rvest```** pour le web scraping et l'utilisation de *GitHub*. Je trouve que travailler sous forme de projet avec une grande autonomie est bien plus formateur et plus épanouissant que si on avait eu des cours standards.
 
 Charline :
+
+Pour ma conclusion personnelle, je pense qu’il est important de commencer par dire que j’ai apprécié réaliser ce projet avec mes camarades. Cela m’a permis d’acquérir de nouvelles connaissances en **```R``` ** et de me rendre compte de ce que je suis capable de faire. J'ai pu approndir mes connaissances pour la création d'une application shiny et me découvrir une réelle passion pour cela. De plus, j'ai pu acquérir des connaissances en terme de création de package ou encore même d'utilisation du package ggplot (ou plotly). Etre livré à nous même ne nous a été que bénéfique. 
 
 # Bibliographie
 
