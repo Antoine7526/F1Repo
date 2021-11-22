@@ -33,7 +33,7 @@ Ce rapport sera divisé en trois parties. Tout d'abord, nous verrons tout ce qui
 |  Contexte, définition du problème, motivations     |  Ce projet est né dans le cadre d'un cours, donné par Monsieur [Rémy Drouilhet](https://studio.dyndoc.fr/CoursM1R), spécialisé sur le langage **```R```**. Nous étions libre sur le choix et curieux de voir ce que pouvait donner de la visualisation de données sur la *Formule 1* (sur plusieurs années). |
 | Objectifs    |  Utilisation de **```RMarkdown```**, **```ggplot2```**(optionnel) et **```Rcpp```** (optionnel). <br> Création d'une interface **```shiny```** et d'une librairie (package).  |
 |   Périmètre    | Libre.  |
-| Description fonctionelle | Pour commencer, le fichier WebScrapingVfinale.R doit être lancé pour récupérer les données. Nous obtenons six bases de données de type *.csv*. Enfin, le fichier shinyapp.R doit être lancé pour avoir accés à l’interface et aux graphiques. L’utilisateur pourra choisir l’année qu’il souhaite entre 1950 et 2020 et de 1958 à 2020 pour les équipes.   |
+| Description fonctionelle | Pour commencer, le fichier WebScrapingVfinale.R doit être lancé pour récupérer les données. Nous obtenons sept bases de données de type *.csv*. Enfin, le fichier shinyapp.R doit être lancé pour avoir accés à l’interface et aux graphiques. L’utilisateur pourra choisir l’année qu’il souhaite entre 1950 et 2020 et de 1958 à 2020 pour les équipes.   |
 | Délai |  	3 mois (du 16/09 au 05/12). |
 | Livrable |  Code source réalisant la récupération des données, le traitement des données et l’interface shiny. <br> Une interface Web affichant les graphiques. <br> Un rapport. |
 
@@ -57,7 +57,7 @@ Nous n'avons pas réalisé directement de diagramme de Gantt car compte tenu de 
 
 ## Récupération des données
 
-Le web scraping consiste à récolter les données sur des sites web. Pour ce projet, basé sur la *Formule 1*, nous avons décidé de créer six bases de données afin de produire des graphiques. Nous avons tout d'abord récupérer les données de l'année 2020 (*cf*. [WebscrapingV3.R](https://github.com/Antoine7526/F1Repo/blob/main/WebScraping/WebscrapingV3.R)) sur le site officiel de la [*Formule 1*](https://www.formula1.com/en/results.html). Nous avons ensuite développé notre code pour que chaque base de données soit composées des années 1950 à 2020. Pour la base de données  sur les équipes (**```dataTeams```**), elle commence en 1958 car les classements ont commencé  cette année là (*cf*.  [WebscrapingV4.R](https://github.com/Antoine7526/F1Repo/blob/main/WebScraping/WebscrapingV4.R)).  
+Le web scraping consiste à récolter les données sur des sites web. Pour ce projet, basé sur la *Formule 1*, nous avons décidé de créer sept bases de données afin de produire des graphiques. Nous avons tout d'abord récupérer les données de l'année 2020 (*cf*. [WebscrapingV3.R](https://github.com/Antoine7526/F1Repo/blob/main/WebScraping/WebscrapingV3.R)) sur le site officiel de la [*Formule 1*](https://www.formula1.com/en/results.html). Nous avons ensuite développé notre code pour que chaque base de données soit composées des années 1950 à 2020. Pour la base de données  sur les équipes (**```dataTeams```**), elle commence en 1958 car les classements ont commencé  cette année là (*cf*.  [WebscrapingV4.R](https://github.com/Antoine7526/F1Repo/blob/main/WebScraping/WebscrapingV4.R)).  
 Nous avons rencontré plusieurs problèmes lors de la récupération des données car le site avait une version mobile ce qui a nécessité un nettoyage des données (car celles-ci comportaient des caractères inutiles).
 <br>
 
@@ -72,8 +72,8 @@ Avec la base de données concernant les informations des pilotes par *Grand Prix
 <br/>
 Pour les données concernant les positions de départ (**```dataStartingGrid```**), nous avons rencontré un autre problème lors du web scraping. *L'url* utilisée est de ce type :   
 <span style="color:black">htt</span><span style="color:black">ps://www.formula1.com/en/results.html/</span> *année* <span style="color:black">/races/</span> *numéro unique associé à un grand prix* <span style="color:black">/</span> *nom du grand prix* <span style="color:black">/starting-grid.html</span>.  
-Le problème vient que le numéro unique attribué à chaque grand prix n'a pas d'ordre logique (*cf*. [WebscrapingV4.R](https://github.com/Antoine7526/F1Repo/blob/main/WebScraping/WebscrapingV4.R) l.494).  
-(**EXPLIQUER comment le pb a été resolu**)
+Le problème vient que le numéro unique attribué à chaque grand prix n'a pas d'ordre logique (*cf*. [WebscrapingV4.R](https://github.com/Antoine7526/F1Repo/blob/main/WebScraping/WebscrapingV4.R) l.494). Pour régler cela, on a du parcourir manuellement les pages web pour créer la vraie liste des numéros associés à chaque grand prix.  
+  
 <br>
 
 
@@ -87,7 +87,9 @@ Nous avons donc fait le choix de seulement sélectionner les pilotes qui sont pa
 (**voir avec Batiste**)  
 Un autre problème qui aurait pu être identifié avant est que la starting grid où l'on récupère les données de dataStartingGrid n'est pas présente pour tous les grands prix entre 1950 et 1959 donc on avait pour certains grands prix des données fausses. On a donc décidé de changer de site pour créer les 3 bases de données citées.  
   
-Après avoir résolu tous nos soucis, nous obtenons nos six base de données comme nous les voulions.
+Ensuite, nous avons créé notre septième base de données qui contenait les longitudes et latitudes de chaque circuit sur le 2e site [*racing-statistics*](https://www.racing-statistics.com/en/seasons).  
+  
+Après avoir résolu tous nos soucis, nous obtenons nos sept base de données comme nous les voulions.
 
 ## Traitement des données 
 
