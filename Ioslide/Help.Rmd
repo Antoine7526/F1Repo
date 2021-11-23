@@ -7,6 +7,14 @@ output:
     css: 'scrollable_slides.css'
 ---
 
+<style type="text/css">
+code.r{
+  font-size: 15px;
+}
+pre {
+  font-size: 12.9px
+}
+</style>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
@@ -19,6 +27,7 @@ Si oui, voici un rapide diaporama montrant ce qui se cache derrière nos graphiq
 
 
 ## Exemple de code
+
 
 ```{r ,echo = TRUE,message=FALSE}
 library(ggplot2)
@@ -68,10 +77,11 @@ PointEcurieGP <- function(data_race_driver){
 }
 ```
 
-## Exemple
-<center> Points Moyens Par Grand Prix </center>
 
-```{r ,echo = FALSE, message = FALSE}
+## Exemple
+<center> Points Moyens Par Grand Prix pour 2020 </center>
+
+```{r ,echo = FALSE, message = FALSE,size="huge"}
 library(VroumVroum)
 library(dplyr)
 dpr <- filter(dataDriversParRaces,dataDriversParRaces$Year==2020)
