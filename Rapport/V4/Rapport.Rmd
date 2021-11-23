@@ -10,6 +10,8 @@ output:
     number_sections: true
     theme: simplex
 ---
+<div style="text-align: justify"> 
+
 # Introduction 
 
 Ce projet est né au cours de notre première année de master en Statistique et Sciences des Données dans le cadre d'une UE, nommée Logiciels spécialisés, où nous avons eu libre choix du sujet. Nous avons décidé, de manière collégiale, de le réaliser sur les résultats de la *Formule 1*. 
@@ -73,19 +75,26 @@ Avec la base de données concernant les informations des pilotes par *Grand Prix
 Pour les données concernant les positions de départ (**```dataStartingGrid```**), nous avons rencontré un autre problème lors du web scraping. *L'url* utilisée est de ce type :   
 <span style="color:black">htt</span><span style="color:black">ps://www.formula1.com/en/results.html/</span> *année* <span style="color:black">/races/</span> *numéro unique associé à un grand prix* <span style="color:black">/</span> *nom du grand prix* <span style="color:black">/starting-grid.html</span>.  
 Le problème vient que le numéro unique attribué à chaque grand prix n'a pas d'ordre logique (*cf*. [WebscrapingV4.R](https://github.com/Antoine7526/F1Repo/blob/main/WebScraping/WebscrapingV4.R) l.494). Pour régler cela, on a du parcourir manuellement les pages web pour créer la vraie liste des numéros associés à chaque grand prix.  
-  
 <br>
 
 
 
 <br/>
 Pour certaines fonctions, nous utilisions **```dataDriversParRaces```** et **```dataStartingGrid```**. Comme la première base de données contient l'ensemble des positions d'arrivées de chaque pilote et la deuxième, l'ensemble des positions de départ, nous nous attendions à avoir le même nombres de lignes. Or ce n'était pas toujours le cas. Ce problème vient du fait que sur le site officiel de la *Formule 1*, sont répertoriés (à l'endroit ou l'on récupèrait les positions d'arrivées) seulement les pilotes ayant gagné au moins un point sur la saison. Il était donc normal que nous nous retrouvions avec cette différence de lignes entre les deux bases de données. De ce problème en a découlé un nouveau, **```dataDrivers```**(notre base de données sensée contenir tous les pilotes) ne contenait pas tous les pilotes.  
+<br>
 
+
+
+<br/> 
 Un autre problème qui aurait pu être identifié avant est que la starting grid où l'on récupère les données de dataStartingGrid n'est pas présente pour tous les grands prix entre 1950 et 1959 donc on avait pour certains grands prix des données fausses. On a donc décidé de changer de site pour créer les 3 bases de données citées.  
-Pour palier à ce problème, nous avons décider de récolter nos données sur un autre site web :[*racing-statistics*](https://www.racing-statistics.com/en/seasons). Au lieu de récupèrer les données pilote par pilote pour chaque année, nous récoltons grand prix par grand prix pour chaque année. La taille des tableaux est une nouvelle fois différente mais ce processus nous a permis de gagner des données. Ce problème venait du fait que sur certains grand prix, des voitures pouvaient être copilotées, il y avait donc un pilote au départ mais deux à l'arrivée.  
+Pour palier à ce problème, nous avons décider de récolter nos données sur un autre site web: [*racing-statistics*](https://www.racing-statistics.com/en/seasons). Au lieu de récupèrer les données pilote par pilote pour chaque année, nous récoltons grand prix par grand prix pour chaque année. La taille des tableaux est une nouvelle fois différente mais ce processus nous a permis de gagner des données. Ce problème venait du fait que sur certains grand prix, des voitures pouvaient être copilotées, il y avait donc un pilote au départ mais deux à l'arrivée.  
 Nous avons donc fait le choix de seulement sélectionner les pilotes qui sont partis pour régler ce problème.  
+<br>
 
-Ensuite, nous avons créé notre septième base de données qui contenait les longitudes et latitudes de chaque circuit sur le 2e site [*racing-statistics*](https://www.racing-statistics.com/en/seasons).  
+
+
+<br/>
+Enfin, nous avons créé notre septième base de données contenant les longitudes et latitudes de chaque circuit. Ces données étaient présentes sur [*racing-statistics*](https://www.racing-statistics.com/en/seasons).  
   
 Après avoir résolu tous nos soucis, nous obtenons nos sept base de données comme nous les voulions.
 
@@ -103,49 +112,105 @@ Après avoir recueilli les données par web scraping, nous nous sommes tout de s
   
 Toutes les fonctions permettent la visualisation sur une année et sur tous les grands prix. Seule la fonction permettant la comparaison entre la position de départ et la position d’arrivée fonctionne sur un seul grand prix.  
 Nous avons décidé de ne pas prendre en compte la saison 2021 car elle est toujours en cours. Nos visualisations se concentrent donc de 1950 à 2020.  
-  
-Toutes ces fonctions sont présentes dans le fichier [*VroumVroumFunc*](https://github.com/Antoine7526/F1Repo/tree/main/Fonctions)  et ont été réalisées sous **```plotly```** afin d’avoir des graphiques intéractifs. Il existe plusieurs versions de ce fichier. En effet, nous avons dû adapter nos fonctions en rapport avec les données recueillies.  
-  
-Afin de tester ces fonctions, nous avons créé un fichier [*TestingFile*](https://github.com/Antoine7526/F1Repo/tree/main/Test). Ce dernier nous permet dans un premier temps de tirer au hasard une année entre 1950 et 2020, et un grand prix associé à l’année tirée. Cela nous permet de tester nos fonctions sur différentes années et sur différents grands prix.  
-  
-Une fois nos fonctions nous paraissant opérationnelles, nous avons travaillé à l’élaboration d’un package nommé [*VroumVroum*](https://github.com/CharlineChamp/VroumVroum). Ce dernier nous permet de charger directement les fonctions, ce qui est très utile. Par la suite, après avoir obtenu nos bases de données finales, nous avons décidé de les ajouter directement au package. Cela a permis d’optimiser le temps de chargement de notre application shiny (*cf*. Partie 3).  
-  
-Pour continuer, nous avons également réalisé des fonctions en [**```Rcpp```**](https://github.com/Antoine7526/F1Repo/tree/main/Rcpp) (en mode *inLine*, en mode classique avec un fichier source *.cpp*). En mode *inLine*, nous avons implémenter une fonction **```add```** permettant l’addition entre trois éléments, et une **```nb_elt```** donnant le nombre d’éléments d’un vecteur de caractères. Dans le fichier *.cpp* nous avons fait deux fonctions calculant des moyennes, **```meanC```** et **```moyenne```**, l’un calculant la moyenne sur un vecteur de **```numeric```**, l’autre calculant la moyenne sur un tableau de **```int```** de taille $n$. Pour donner suite à cela nous avons voulu créer un package [*VroumVroumCpp*](https://github.com/Antoine7526/VroumVroumCpp). Nous nous sommes heurtés à des difficultés qui nous prenaient trop de temps. Or, les fonctions implémentées en **```Rcpp```** n'étaient pas utiles à notre projet, car nous ne les utilisions pas. Nous avons donc décidé de mettre cette partie de côté afin d’avancer sur le projet et d’y revenir plus tard si le temps nous le permettait.
+<br>
 
+
+
+<br/>
+Toutes ces fonctions sont présentes dans le fichier [*VroumVroumFunc*](https://github.com/Antoine7526/F1Repo/tree/main/Fonctions)  et ont été réalisées sous **```plotly```** afin d’avoir des graphiques intéractifs. Il existe plusieurs versions de ce fichier. En effet, nous avons dû adapter nos fonctions en rapport avec les données recueillies.  
+<br>
+
+
+
+<br/>
+Afin de tester ces fonctions, nous avons créé un fichier [*TestingFile*](https://github.com/Antoine7526/F1Repo/tree/main/Test). Ce dernier nous permet dans un premier temps de tirer au hasard une année entre 1950 et 2020, et un grand prix associé à l’année tirée. Cela nous permet de tester nos fonctions sur différentes années et sur différents grands prix.  
+<br>
+
+
+
+<br/>
+Une fois nos fonctions nous paraissant opérationnelles, nous avons travaillé à l’élaboration d’un package nommé [*VroumVroum*](https://github.com/CharlineChamp/VroumVroum). Ce dernier nous permet de charger directement les fonctions, ce qui est très utile. Par la suite, après avoir obtenu nos bases de données finales, nous avons décidé de les ajouter directement au package. Cela a permis d’optimiser le temps de chargement de notre application shiny (*cf*. Partie 3).  
+ <br>
+
+
+
+<br/>
+Pour continuer, nous avons également réalisé des fonctions en [**```Rcpp```**](https://github.com/Antoine7526/F1Repo/tree/main/Rcpp) (en mode *inLine*, en mode classique avec un fichier source *.cpp*). En mode *inLine*, nous avons implémenter une fonction **```add```** permettant l’addition entre trois éléments, et une **```nb_elt```** donnant le nombre d’éléments d’un vecteur de caractères. Dans le fichier *.cpp* nous avons fait deux fonctions calculant des moyennes, **```meanC```** et **```moyenne```**, l’un calculant la moyenne sur un vecteur de **```numeric```**, l’autre calculant la moyenne sur un tableau de **```int```** de taille $n$. Pour donner suite à cela nous avons voulu créer un package [*VroumVroumCpp*](https://github.com/Antoine7526/VroumVroumCpp). Nous nous sommes heurtés à des difficultés qui nous prenaient trop de temps. Or, les fonctions implémentées en **```Rcpp```** n'étaient pas utiles à notre projet, car nous ne les utilisions pas. Nous avons donc décidé de mettre cette partie de côté afin d’avancer sur le projet et d’y revenir plus tard si le temps nous le permettait.
+<br>
+
+
+
+<br/>
 ## Développement de l'interface Shiny
 
-Afin de terminer notre projet, nous avons créer une interface **```shiny```** pour présenter tout ce qui le constitue, c'est-à-dire par exemple nos graphiques, notre rapport ou encore nos liens sources. Le but étant d’avoir quelque chose d’intuitif nous permettant de le déposer sur internet pour faire perdurer le projet dans le temps. Dans cette partie, nous ne rentrerons pas en détail dans le code. Pour le voir plus en détail il est disponible [ici](https://github.com/Antoine7526/F1Repo/blob/main/Shiny/3.3/shinyapp.R). 
-  
-L’interface devait comprendre une structure simple : des éléments pour permettre à l’utilisateur de faire le choix des paramètres et une zone où le graphique s’affichera accompagné d'une petite interprétation. Pour le choix des paramètres, l’utilisateur doit pouvoir choisir l’année qu'il souhaite regarder, et pour un graphique il aura également le choix de sélectionner un grand prix.
+Pour le rendu de notre projet, nous avons créer une interface **```shiny```** permettant de présenter tous les éléments qui le constitue. C'est-à-dire nos graphiques, notre rapport ou encore nos liens sources. Le but étant d’avoir quelque chose d’intuitif nous permettant de le déposer sur internet pour faire perdurer le projet dans le temps. Dans cette partie, nous ne rentrerons pas en détail dans le code. Pour les plus curieux, vous pouvez vous rendre [ici](https://github.com/Antoine7526/F1Repo/blob/main/Shiny/3.5/shinyapp.R). 
+<br>
 
+
+
+<br/>
+L’interface devait comprendre une structure simple : des éléments pour permettre à l’utilisateur de faire le choix des paramètres et une zone où le graphique s’affichera accompagné d'une petite interprétation. Pour le choix des paramètres, l’utilisateur doit pouvoir choisir l’année qu'il souhaite regarder. Et pour l'un des graphiques, il aura également le choix de sélectionner un grand prix.
+<br>
+
+
+
+<br/>
 Le développement de notre interface web s'est fait en langage **```R```**, à l'aide du package **```shiny```** . Nous nous sommes exclusivement reposés sur cette librairie pour tout ce qui est de l’interface. La librairie **```shiny```** facilite la création d’applications web interactives directement à partir de **```R```**. Elle permet d’héberger des applications autonomes sur une page web ou les intégrer dans des documents **```RMarkdown```**. On peut également étendre les applications **```shiny```** avec des thèmes **```CSS```**, des widgets **```html```** et des actions **```JavaScript```**. Ce package combine la puissance de calcul de **```R```** avec l’interactivité du web.
+<br>
 
+
+
+<br/>
 Un site internet est complétement dédié à la librairie **```shiny```**. Il est composé d’explications pour chaque fonction disponible dans ce package, il y a une partie avec de nombreux articles qui expliquent pas à pas le processus pour construire une interface web. Il nous offre aussi une large galerie de sites internets développés sous ce package, vous pouvez le retrouver [ici](https://shiny.rstudio.com/gallery/). Nous nous en sommes beaucoup servis car il nous suffisait d’aller chercher un site sur lequel il y avait ce que nous voulions, puis d’aller voir le code qui était fourni avec pour comprendre les mécanismes.  
+<br>
 
 
+
+<br/>
 Pour vous expliquer brièvement le code, il se constitue de deux grosses fonctions essentielles au fonctionement de l’application : 
 
-- une fonction « ui »
-- une fonction « server » 
+- une fonction **```ui```**
+- une fonction **```server```**
 
-Dans la fonction « ui » nous retrouvons tout ce qui touche à la mise en page : la disposition des éléments, les couleurs, les polices, les onglets, la manière dont les graphiques s’affichent, etc.   
+Dans la fonction **```ui```** nous retrouvons tout ce qui touche à la mise en page : la disposition des éléments, les couleurs, les polices, les onglets, la manière dont les graphiques s’affichent, etc...   
+<br>
 
-Comme cité plutôt, lors de ce projet nous avons créé un package nommée [*VroumVroum*](https://github.com/CharlineChamp/VroumVroum). Dans ce package, nous avons toutes nos fonctions utiles aux traitements de nos données, c'est-à-dire à l'affichage de nos différents graphiques. Egalement sont présentes dans ce package, toutes nos données récupérées à l'aide du web scraping. Ainsi dans la fonction « server », nous avons principalement utilisé ce package. Le processus reste le même, nous avons créer une fonction pour chaque graphique à afficher. Dans nos fonctions nous avons commencé par filtrer les données par rapport à l'année sélectionnez par l'utilisateur, ou encore même par le grand prix. Ensuite il nous suffisait d'appeler nos fonctions présentes dans le package et d'y insérer nos données filtrées. L'ajout de ce package nous a perdu d'obtenir un code, pour l'interface web, relativement ahéré, moins brouillon et facile à comprendre, ainsi qu'à reprendre.  
 
-Une fois l’application créée, il est très facile de la publier sur internet. Nous avons déployer l’application sur un serveur de la librairie shiny : shinyapps.io. 
+
+<br/>
+Comme cité plus tôt, lors de ce projet nous avons créé un package nommée [*VroumVroum*](https://github.com/CharlineChamp/VroumVroum). Dans ce package, nous avons toutes nos fonctions utiles aux traitements de nos données, c'est-à-dire à l'affichage de nos différents graphiques. Egalement sont présentes dans ce package, toutes nos données récupérées à l'aide du web scraping. Ainsi dans la fonction **```server```**, nous avons principalement utilisé ce package. Le processus reste le même, nous avons créé une fonction pour chaque graphique à afficher. Dans nos fonctions nous avons commencé par filtrer les données par rapport à l'année sélectionnée par l'utilisateur, ou encore même par le grand prix. Ensuite il nous suffisait d'appeler nos fonctions présentes dans le package et d'y insérer nos données filtrées. L'ajout de ce package nous a permis d'obtenir un code, pour l'interface web, relativement ahéré, moins brouillon et facile à comprendre. Cela est très utile pour quelqu'un qui souhaiterait le reprendre.  
+<br>
+
+
+
+<br/>
+Une fois l’application créée, il est très facile de la publier sur internet. Nous avons déployé l’application sur un serveur de la librairie shiny : shinyapps.io. 
 
 
 # Evaluation générale
 
 ## Difficultées rencontrées
 
-Discutons maintenant des différentes difficultés que nous avons rencontré lors de ce projet.
+Discutons maintenant des différentes difficultés rencontrées lors de ce projet.
+<br>
 
-Comme vu précedemment, la récupération des données sur le site nous a posé quelques problèmes: la génération automatique des liens pour récupérer les données, l'incohérence entre le nombre de pilotes aux départs différents du nombre de pilotes à l'arrivée, etc. Cependant un autre problème est apparu lors de ce projet. En effet, durant la moitié du projet, nous avons eu des problèmes d'accents et caractères spéciaux lorsque l'on s'échangeait les données et fichiers R. Ainsi une partie du groupe a du relancer les fichiers du web scraping pour nous permettre d'avoir des données sans caractères spéciaux. Après réflexion, nous nous sommes rendu compte que le problème venait du type d'encodage des fichiers de chacun mais également de nos systèmes d'exploitations qui sont différents.
 
-Deuxièmement un autre souçi est apparu, le Rcpp. La création d'un package est le principal problème pour le Rcpp. (à développer peut être)
 
-Troisèmement, la création du package VroumVroum qui n'a pas été une mince affaire. En effet, nous voulions que les librairies nécessaires dans nos fonctions s'installer automatiquement (si elles ne sont pas déjà présentes) pendant l'installation de notre package. Une fois cela débloqué un second problème a apparu, un conflit de librairies. Nous utilisons dans le package VroumVroum la librairie **```ggplot2```** et **```plotly```**, ainsi un conflit a apparu lors de l'utilisation de la fonction last_plot qui est présente dans ces deux librairies. Pour régler ce problème nous avons dû, au lieu d'importer tous le package **```ggplot2```** et **```plotly```**, importer uniquement les fonctions dont nous avions besoin.
+<br/>
+Comme nous l'avons vu précedemment, la récupération des données nous a posé quelques problèmes: la génération automatique des liens pour récupérer les données, l'incohérence entre le nombre de pilotes aux départs et le nombre de pilotes à l'arrivée, etc... Cependant un autre problème est apparu. En effet, durant plus de la moitié du projet, nous avons eu des problèmes d'accents et caractères spéciaux lorsque l'on s'échangeait les données et fichiers R. Ainsi une partie du groupe a dû relancer les fichiers de web scraping afin d'avoir des données sans anomalies. Après réflexion, nous nous sommes rendu compte que le problème venait du type d'encodage des fichiers. En effet, nous n'avons pas tous les mêmes systèmes d'exploitation.
+<br>
+
+
+
+<br/>
+Pour continuer, un autre souçi est apparu, le Rcpp. La création d'un package est le principal problème pour le Rcpp. En effet, malgré les différentes méthodes employées, que ce soit par *Rstudio* ou par le terminal, rien ni faisait. Nous avions beau suivre les indications, nous ne tombions jamais sur le résultat escompté. Cela venait peut être des types déclaré dans les fonctions *.cpp*. Nous n'avons pas réellement chercher d'où venait l'erreur, car beaucoup de travail était en cours et comme nous l'avons déjà dit plus haut, ces fonctions n'auraient jamais été utilisées lors ce projet. Il n'était donc pas très pertinent d'en faire un package.
+<br>
+
+
+
+<br/>
+Enfin, la création du package **```VroumVroum```** n'a pas été une mince affaire. En effet, nous voulions que les librairies utilisées dans nos fonctions s'installent automatiquement (si elles n'étaient pas déjà présentes) lors de l'installation de notre package. Une fois ce problème résolu, un second est apparu. Nous avions eu ce que nous pouvons appeler un conflit de librairies. Nous utilisons dans le package **```VroumVroum```** les librairies **```ggplot2```** et **```plotly```**. Pour vous expliquer brièvement, **```ggplot2```** nous pertmet d'afficher des graphiques de qualités et **```plotly```** nous permet de les rendre intéractif. Ce que nous faisions est de transformer un objet **```ggplot2```** en un objet **```plotly```** via la fonction **```ggplotly()```**. Cette dernière fait apelle à une autre fonction : **```last_plot()```** qui est présentes dans les deux libraires. Ce qui entraînait un conflit.  
+Afin de  résoudre ce problème, nous avons dû, au lieu d'importer tous le package **```ggplot2```** et **```plotly```**, importer uniquement les fonctions dont nous avions besoin.
 
 ## Pistes d'améliorations
 
@@ -166,20 +231,24 @@ Ce projet m'a beaucoup plu, tant le sujet que le résultat final obtenu. J'ai pu
 
 Charline :
 
-Pour ma conclusion personnelle, je pense qu’il est important de commencer par dire que j’ai apprécié réaliser ce projet avec mes camarades. Cela m’a permis d’acquérir de nouvelles connaissances en **```R``` ** et de me rendre compte de ce que je suis capable de faire. J'ai pu approndir mes connaissances pour la création d'une application shiny et me découvrir une réelle passion pour cela. De plus, j'ai pu acquérir des connaissances en terme de création de package ou encore même d'utilisation du package ggplot (ou plotly). Etre livré à nous même nous a été que bénéfique. 
+Pour ma conclusion personnelle, je pense qu’il est important de commencer par dire que j’ai apprécié réaliser ce projet avec mes camarades. Cela m’a permis d’acquérir de nouvelles connaissances en **```R``` ** et de me rendre compte de ce que je suis capable de faire. J'ai pu approndir mes connaissances pour la création d'une application shiny et me découvrir une réelle passion pour cela. De plus, j'ai pu acquérir des connaissances en terme de création de package ou encore même d'utilisation du package **```ggplot2```** (ou **```plotly```**). Etre livré à nous même nous a été que bénéfique. 
 
 # Bibliographie
-
-## Web scraping 
-
+  
+<font size = "3">
+<u> <B> Web Scraping : </B> </u>
+</font>  
+  
 1. Site officiel de la Formule 1,
 https://www.formula1.com/
 
 2. Site de données sur la Formule 1,
 https://www.racing-statistics.com/en
 
-## Traitement des données 
-
+<font size = "3">
+<u> <B> Traitement des Données : </B> </u>
+</font>  
+  
 3. "ggplot2 graduation des axes",
 http://www.sthda.com/french/wiki/ggplot2-graduation-des-axes-guide-pour-personnaliser-les-etiquettes-des-graduations-logiciel-r-et-visualisation-de-donnees
 
@@ -192,8 +261,10 @@ https://www.r-graph-gallery.com/128-ring-or-donut-plot.html
 6. "Pie Charts in R", 
 https://plotly.com/r/pie-charts/
 
-## Rcpp 
-
+<font size = "3">
+<u> <B> Rcpp : </B> </u>
+</font>  
+  
 7. "High performance functions with Rcpp", Hadley Wickham, 
 http://adv-r.had.co.nz/Rcpp.html
 
@@ -202,16 +273,20 @@ https://cran.r-project.org/web/packages/Rcpp/vignettes/Rcpp-package.pdf
 
 9. "Thirteen Simple Steps for Creating An R Package with an External C++ Library", Dirk Eddelbuettel, https://cran.r-project.org/web/packages/Rcpp/vignettes/Rcpp-libraries.pdf
 
-## Création package 
-
+<font size = "3">
+<u> <B> Création Package : </B> </u>
+</font>  
+  
 10. "Package Development: : CHEAT SHEET", 
 https://rawgit.com/rstudio/cheatsheets/master/package-development.pdf
 
 11. "Including datasets", Karl Broman, 
 https://kbroman.org/pkg_primer/pages/data.html
 
-## Interface web
-
+<font size = "3">
+<u> <B> Interface Web : </B> </u>
+</font>  
+  
 12. "ioslides presentation", 
 https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html
 
@@ -234,13 +309,15 @@ https://rstudio.github.io/shinydashboard/structure.html
 19. "Application layout guide",Jj Allaire, 
 https://shiny.rstudio.com/articles/layout-guide.html
 
-## Github 
-
+<font size = "3">
+<u> <B> GitHub : </B> </u>
+</font>  
+  
 20. Dépôt git du projet,
 https://github.com/Antoine7526/F1Repo
 
 21. Package VroumVroum,
 https://github.com/CharlineChamp/VroumVroum
 
-
+</div>
 
