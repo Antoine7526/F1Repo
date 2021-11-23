@@ -1,0 +1,14 @@
+img.animated-navl{
+        width: auto;
+        height: 20px;
+       position:absolute;
+          bottom:0;
+          right:25px;
+      }
+      img.animated-navr{
+       width: auto;
+        height: 20px;
+       position:absolute;
+          bottom:0;
+          right:0;
+      }

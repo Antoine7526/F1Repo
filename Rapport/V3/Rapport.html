@@ -11,7 +11,7 @@
 
 <meta name="author" content="Batiste Amistadi, Charline Champ et Antoine Grancher" />
 
-<meta name="date" content="2021-11-22" />
+<meta name="date" content="2021-11-23" />
 
 <title>Projet Formule 1</title>
 
@@ -243,7 +243,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Projet Formule 1</h1>
 <h4 class="author">Batiste Amistadi, Charline Champ et Antoine Grancher</h4>
-<h4 class="date">2021-11-22</h4>
+<h4 class="date">2021-11-23</h4>
 
 </div>
 
@@ -288,7 +288,7 @@ Ce projet s’est divisé en quatre parties:</p>
 </tr>
 <tr class="even">
 <td>Description fonctionelle</td>
-<td>Pour commencer, le fichier WebScrapingVfinale.R doit être lancé pour récupérer les données. Nous obtenons six bases de données de type <em>.csv</em>. Enfin, le fichier shinyapp.R doit être lancé pour avoir accés à l’interface et aux graphiques. L’utilisateur pourra choisir l’année qu’il souhaite entre 1950 et 2020 et de 1958 à 2020 pour les équipes.</td>
+<td>Pour commencer, le fichier WebScrapingVfinale.R doit être lancé pour récupérer les données. Nous obtenons sept bases de données de type <em>.csv</em>. Enfin, le fichier shinyapp.R doit être lancé pour avoir accés à l’interface et aux graphiques. L’utilisateur pourra choisir l’année qu’il souhaite entre 1950 et 2020 et de 1958 à 2020 pour les équipes.</td>
 </tr>
 <tr class="odd">
 <td>Délai</td>
@@ -322,19 +322,20 @@ Nous n’avons pas réalisé directement de diagramme de Gantt car compte tenu d
 <h1 number="3"><span class="header-section-number">3</span> Réalisation</h1>
 <div id="récupération-des-données" class="section level2" number="3.1">
 <h2 number="3.1"><span class="header-section-number">3.1</span> Récupération des données</h2>
-<p>Le web scraping consiste à récolter les données sur des sites web. Pour ce projet, basé sur la <em>Formule 1</em>, nous avons décidé de créer six bases de données afin de produire des graphiques. Nous avons tout d’abord récupérer les données de l’année 2020 (<em>cf</em>. <a href="https://github.com/Antoine7526/F1Repo/blob/main/WebScraping/WebscrapingV3.R">WebscrapingV3.R</a>) sur le site officiel de la <a href="https://www.formula1.com/en/results.html"><em>Formule 1</em></a>. Nous avons ensuite développé notre code pour que chaque base de données soit composées des années 1950 à 2020. Pour la base de données sur les équipes (<strong><code>dataTeams</code></strong>), elle commence en 1958 car les classements ont commencé cette année là (<em>cf</em>. <a href="https://github.com/Antoine7526/F1Repo/blob/main/WebScraping/WebscrapingV4.R">WebscrapingV4.R</a>).<br />
+<p>Le web scraping consiste à récolter les données sur des sites web. Pour ce projet, basé sur la <em>Formule 1</em>, nous avons décidé de créer sept bases de données afin de produire des graphiques. Nous avons tout d’abord récupérer les données de l’année 2020 (<em>cf</em>. <a href="https://github.com/Antoine7526/F1Repo/blob/main/WebScraping/WebscrapingV3.R">WebscrapingV3.R</a>) sur le site officiel de la <a href="https://www.formula1.com/en/results.html"><em>Formule 1</em></a>. Nous avons ensuite développé notre code pour que chaque base de données soit composées des années 1950 à 2020. Pour la base de données sur les équipes (<strong><code>dataTeams</code></strong>), elle commence en 1958 car les classements ont commencé cette année là (<em>cf</em>. <a href="https://github.com/Antoine7526/F1Repo/blob/main/WebScraping/WebscrapingV4.R">WebscrapingV4.R</a>).<br />
 Nous avons rencontré plusieurs problèmes lors de la récupération des données car le site avait une version mobile ce qui a nécessité un nettoyage des données (car celles-ci comportaient des caractères inutiles). <br></p>
 <p><br /> Avec la base de données concernant les informations des pilotes par <em>Grand Prix</em> (<strong><code>dataDriversParRaces</code></strong>), nous avons eu un problème concernant la création des adresses <em>url</em> des pilotes. Une partie de <em>l’url</em> est créée à partir du nom du pilote, seulement certains noms étaient particuliers, ils étaient composés ou avaient un “de” ou un prénom ou un nom de moins de trois lettres. Nous avons donc dû faire une réécriture manuelle de cette partie du <em>l’url</em> pour ces pilotes (<em>cf</em>. <a href="https://github.com/Antoine7526/F1Repo/blob/main/WebScraping/WebscrapingV4.R">WebscrapingV4.R</a> l.260 à 406). <br></p>
 <p><br /> Pour les données concernant les positions de départ (<strong><code>dataStartingGrid</code></strong>), nous avons rencontré un autre problème lors du web scraping. <em>L’url</em> utilisée est de ce type :<br />
 <span style="color:black">htt</span><span style="color:black">ps://www.formula1.com/en/results.html/</span> <em>année</em> <span style="color:black">/races/</span> <em>numéro unique associé à un grand prix</em> <span style="color:black">/</span> <em>nom du grand prix</em> <span style="color:black">/starting-grid.html</span>.<br />
-Le problème vient que le numéro unique attribué à chaque grand prix n’a pas d’ordre logique (<em>cf</em>. <a href="https://github.com/Antoine7526/F1Repo/blob/main/WebScraping/WebscrapingV4.R">WebscrapingV4.R</a> l.494).<br />
-(<strong>EXPLIQUER comment le pb a été resolu</strong>) <br></p>
+Le problème vient que le numéro unique attribué à chaque grand prix n’a pas d’ordre logique (<em>cf</em>. <a href="https://github.com/Antoine7526/F1Repo/blob/main/WebScraping/WebscrapingV4.R">WebscrapingV4.R</a> l.494). Pour régler cela, on a du parcourir manuellement les pages web pour créer la vraie liste des numéros associés à chaque grand prix.</p>
+<p><br></p>
 <p><br /> Pour certaines fonctions, nous utilisions <strong><code>dataDriversParRaces</code></strong> et <strong><code>dataStartingGrid</code></strong>. Comme la première base de données contient l’ensemble des positions d’arrivées de chaque pilote et la deuxième, l’ensemble des positions de départ, nous nous attendions à avoir le même nombres de lignes. Or ce n’était pas toujours le cas. Ce problème vient du fait que sur le site officiel de la <em>Formule 1</em>, sont répertoriés (à l’endroit ou l’on récupèrait les positions d’arrivées) seulement les pilotes ayant gagné au moins un point sur la saison. Il était donc normal que nous nous retrouvions avec cette différence de lignes entre les deux bases de données. De ce problème en a découlé un nouveau, <strong><code>dataDrivers</code></strong>(notre base de données sensée contenir tous les pilotes) ne contenait pas tous les pilotes.</p>
 <p>Pour palier à ce problème, nous avons décider de récolter nos données sur un autre site web :<a href="https://www.racing-statistics.com/en/seasons"><em>racing-statistics</em></a>. Au lieu de récupèrer les données pilote par pilote pour chaque année, nous récoltons grand prix par grand prix pour chaque année. La taille des tableaux est une nouvelle fois différente mais ce processus nous a permis de gagner des données. Ce problème venait du fait que sur certains grand prix, des voitures pouvaient être copilotées, il y avait donc un pilote au départ mais deux à l’arrivée.<br />
 Nous avons donc fait le choix de seulement sélectionner les pilotes qui sont partis pour régler ce problème.</p>
 <p>(<strong>voir avec Batiste</strong>)<br />
 Un autre problème qui aurait pu être identifié avant est que la starting grid où l’on récupère les données de dataStartingGrid n’est pas présente pour tous les grands prix entre 1950 et 1959 donc on avait pour certains grands prix des données fausses. On a donc décidé de changer de site pour créer les 3 bases de données citées.</p>
-<p>Après avoir résolu tous nos soucis, nous obtenons nos six base de données comme nous les voulions.</p>
+<p>Ensuite, nous avons créé notre septième base de données qui contenait les longitudes et latitudes de chaque circuit sur le 2e site <a href="https://www.racing-statistics.com/en/seasons"><em>racing-statistics</em></a>.</p>
+<p>Après avoir résolu tous nos soucis, nous obtenons nos sept base de données comme nous les voulions.</p>
 </div>
 <div id="traitement-des-données" class="section level2" number="3.2">
 <h2 number="3.2"><span class="header-section-number">3.2</span> Traitement des données</h2>
@@ -375,7 +376,7 @@ Nous avons décidé de ne pas prendre en compte la saison 2021 car elle est touj
 <p>Discutons maintenant des différentes difficultés que nous avons rencontré lors de ce projet.</p>
 <p>Comme vu précedemment, la récupération des données sur le site nous a posé quelques problèmes: la génération automatique des liens pour récupérer, l’incohérence entre le nombre de pilotes aux départs différents du nombre de pilotes à l’arrivée, etc. Cependant un autre problème est apparu lors de ce projet. En effet, durant la moitié du projet, nous avons eu des problèmes d’accents et caractères spéciaux lorsque l’on s’échangeait les données et fichiers R. Ainsi une partie du groupe à du relancer les fichiers du web scraping pour nous permettre d’avoir des données sans caractères spéciaux. Après réflexion, nous nous sommes rendu compte que le problème venait du type d’encodage des fichiers de chacun mais également de nos systèmes d’exploitations qui sont différent.</p>
 <p>Deuxièmement un autre souçi est apparu, le Rcpp. La création d’un package est le principal problème pour le Rcpp. (à développer peut être)</p>
-<p>Troisèmement, la création du package VroumVroum qui n’a pas été une mince affaire. En effet, nous voulions que les librairies nécessaires dans nos fonctions s’installer automatiquement (si elles ne sont pas déjà présentes) pendant l’installation de notre package. Une fois cela débloqué un second problème a apparu, un conflit de librairies. Nous utilisons dans le package VroumVroum la librairie <strong><code>ggplot2</code></strong> et <strong><code>plotly</code></strong>, ainsi un conflit a apparu lors de l’utilisation de la fonction last_plot qui est présente dans ces deux librairies. Pour régler ce problème nous avons dû, au lieu d’importer tous le package <strong><code>ggplot2</code></strong> et <strong><code>plotly</code></strong>, n’importer que les fonctions dont nous avions besoin.</p>
+<p>Troisèmement, la création du package VroumVroum qui n’a pas été une mince affaire. En effet, nous voulions que les librairies nécessaires dans nos fonctions s’installer automatiquement (si elles ne sont pas déjà présentes) pendant l’installation de notre package. Une fois cela débloqué un second problème a apparu, un conflit de librairies. Nous utilisons dans le package VroumVroum la librairie <strong><code>ggplot2</code></strong> et <strong><code>plotly</code></strong>, ainsi un conflit a apparu lors de l’utilisation de la fonction last_plot qui est présente dans ces deux librairies. Pour régler ce problème nous avons dû, au lieu d’importer tous le package <strong><code>ggplot2</code></strong> et <strong><code>plotly</code></strong>, n’importer que les fonctions dont nous avions l’utilité.</p>
 </div>
 <div id="pistes-daméliorations" class="section level2" number="4.2">
 <h2 number="4.2"><span class="header-section-number">4.2</span> Pistes d’améliorations</h2>
