@@ -162,7 +162,7 @@ PosDepArr <- function(data_sg, data_driver_race, grand_prix){
   #Graphe des position de départ et d'arrivée 
   graphique <- ggplot(g, aes(x=position_depart, y=position_arrivee, color=pilote_depart))+ 
                geom_point() +
-               geom_segment(aes(x = 0, y = 0, xend = 20, yend = 20),color="black")+
+               geom_segment(aes(x = 0, y = 0, xend = length(position_depart), yend = length(position_depart),color="black")+
                labs(color = "Pilotes")+
                theme(plot.title = element_text(face = "bold",hjust = 0.5))
   
