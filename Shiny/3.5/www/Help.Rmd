@@ -1,36 +1,89 @@
 ---
 title: "Help"
+author: "Batiste Amistadi, Charline Champ et Antoine Grancher"
+date: "`r Sys.Date()`"
 output:
   ioslides_presentation:
-          css: foo.css
+    css: 'scrollable_slides.css'
 ---
+
+<style type="text/css">
+code.r{
+  font-size: 15px;
+}
+pre {
+  font-size: 12.9px
+}
+</style>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Besoin d'aide ?
+## Vous êtes curieux ?
 
-Voici un petit diaporama permettant de vous donner de l'aide sur la navigation de notre site.
+Si oui, voici un rapide diaporama montrant ce qui se cache derrière nos graphiques !
 
 
 
-## Page d'accueil
+## Exemple de code
 
-<img src="Accueil.png" height = '500' width ='777'/>
 
- <a href="javascript:slidedeck.prevSlide()">
-      <img class="animated-navl" border="0" src="arrow.png" /></a>
+```{r ,echo = TRUE,message=FALSE}
+library(ggplot2)
+library(plotly)
 
-## Slide with R Output
-
-```{r cars, echo = TRUE}
-summary(cars)
+PointEcurieGP <- function(data_race_driver){
+  
+  #Récupération des écuries et des grands prix
+  Ecurie <- unique(data_race_driver$Car)
+  gp <- unique(data_race_driver$GrandPrix)
+  
+  #Initialisation des vecteurs
+  somme <- c()
+  ecurie <- c()
+  GP <- c()
+  
+  #Somme des points des ecuries par Grand Prix
+  for(i in gp){
+    tmp_gp <- data_race_driver[data_race_driver$GrandPrix==i,c(6,8)]
+    for(j in Ecurie){
+      tmp_ecurie <- tmp_gp$Points[tmp_gp$Car==j]
+      somme <- c(somme,sum(tmp_ecurie))
+      ecurie <- c(ecurie,j)
+      GP <- c(GP,i)
+    }
+  }
+  
+  #Data frame comportant les écuries, les grands prix et la somme des points gagnés par les écuries
+  position_ecurie <- data.frame(Ecurie=ecurie,GrandPrix=GP,Points=somme)
+  
+  #Graphe de la sommes des points des écuries par Grand Prix
+  position_ecurie_graph <- ggplot(data = position_ecurie,aes(x=GrandPrix,y=Points,group=Ecurie,colour=Ecurie))+
+                           geom_line()+
+                           theme_bw()+
+                           guides(fill=guide_legend("Ecuries"))+
+                           xlab("Grands Prix")+
+                           ylab("Nombre de points gagnes")+
+                           theme(plot.title=element_text(hjust=0.5,size=18,face="bold"))+
+                           theme(axis.title.x = element_text(hjust=0.5,size=15))+
+                           theme(axis.title.y=element_text(hjust=0.5,size=15))+
+                           theme(legend.title = element_text(size=10))+
+                           theme(axis.text.x = element_text(face="bold", color="black", size=10, angle=30))
+  
+  #Concersion en plotly
+  ggplotly(position_ecurie_graph)
+  
+}
 ```
 
-## Slide with Plot
 
-```{r pressure}
-plot(pressure)
+## Exemple
+<center> Points Moyens Par Grand Prix pour 2020 </center>
+
+```{r ,echo = FALSE, message = FALSE,size="huge"}
+library(VroumVroum)
+library(dplyr)
+dpr <- filter(dataDriversParRaces,dataDriversParRaces$Year==2020)
+PointEcurieGP(dpr)
 ```
-
