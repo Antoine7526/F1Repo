@@ -227,8 +227,14 @@ Pour commencer, nous aurions aimé créer un second package regroupant toutes le
 
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <br/>
 Enfin, en début de projet nous avions eu l'idée de créer un questionnaire sous **```R```** qui aurait pu nous aider pour créer de nouveaux graphiques et encore même savoir si ceux déjà proposés étaient utiles et compréhensibles. Cependant nous avons mis cette idée de côté pour nous focaliser sur la création d'un package, de fonction en Rcpp, et sur la  récupération de toutes les données. 
+=======
+Antoine :  
+Ce projet fut très intéressant, j'ai appris de nombreuses choses sur le lanage **```R```**. Que ce soit sur la visualisation de données avec **```ggplot2```** et 
+Le sujet était très intéressant, le fait de travailler sur du concret et de sortir de l'aspect théorique m’a réellement plus. J'ai appris de nombreuses choses, tout d'abord par rapport au langage R où je pense avoir maintenant un bon bagage. Et sur l'aspect humain, qu'il ne faut pas négliger, où la communication et l'écoute fut au rendez-vous. Et enfin la gestion du temps qui fut également maîtrisée. Je ne retiens que du bon sur ce projet.
+>>>>>>> Stashed changes
 =======
 Antoine :  
 Ce projet fut très intéressant, j'ai appris de nombreuses choses sur le lanage **```R```**. Que ce soit sur la visualisation de données avec **```ggplot2```** et 
