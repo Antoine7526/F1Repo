@@ -29,7 +29,7 @@ ui <- dashboardPage(
                            dropdownMenu(type = "messages", 
                                         icon = icon("info-circle"),
                                         badgeStatus =NULL,
-                                        headerText = ("Dernière mise à jour: 01-12-2021"))
+                                        headerText = ("Dernière mise à jour: 01/12/2021"))
   ),
   #Tableau de gauche
   sidebar = dashboardSidebar(
