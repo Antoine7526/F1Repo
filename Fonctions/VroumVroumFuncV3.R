@@ -164,7 +164,7 @@ PosDepArr <- function(data_sg, data_driver_race, grand_prix){
                geom_point() +
                geom_segment(aes(x = 0, y = 0, xend = length(position_depart), yend = length(position_depart),color="black")+
                labs(color = "Pilotes")+
-               theme(plot.title = element_text(face = "bold",hjust = 0.5))
+               theme(plot.title = element_text(face = "bold",hjust = 0.5)
   
   #Conversion en plotly
   ggplotly(graphique)
